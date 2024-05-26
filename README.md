@@ -4,63 +4,77 @@ Vote-x is a web-based e-voting system that uses blockchain technology, which off
 
 ## Features
 
-- Secure Voting: Each vote is encrypted and stored on the blockchain, making it tamper-proof.
-
-- Transparency: Votes can be audited and verified by anyone, ensuring transparency.
-
-- Decentralization: The use of blockchain ensures that no single entity controls the voting process.
-
 - User Authentication: Secure user authentication to ensure that only authorized voters can vote.
 
 - Email Verification: Email verification is implemented to prevent fraudulent registrations.
 
-## Technologies Used
+## Technologies Incorporated
 
 - Laravel: Backend framework for building the application.
-- Node.js: Used for handling real-time features and blockchain interactions.
-- Blockchain: The core technology ensuring security and transparency.
+- Node.js: Used for handling real-time features.
 - Composer: Dependency manager for PHP.
 - NPM: Package manager for Node.js.
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP >= 10.48.10
+- Composer
+- Node.js
+- MySQL Workbench
+- Git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### STEPS
 
-## Laravel Sponsors
+#### 1. Clone the Repository
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Run the command: git clone <https://github.com/MICR-21/Vote-X.git>
 
-### Premium Partners
+#### 2. Install PHP Dependancies
+  
+Run command: composer update
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### 3. Copy environment file
 
-## Contributing
+run the code: cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 4. Generate application key
 
-## Code of Conduct
+Use code: php artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 5. Install Node.js dependencies
 
-## Security Vulnerabilities
+Use code: npm install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### 6. Set up database
+
+Create a database and update the .env file with your database credentials.
+Run migrations to set up the database tables.
+
+Run migration code: php artisan migrate
+
+#### 7. Run the application
+
+Use code: php artisan serve
+
+#### 8. Run Node.js server
+
+use code: node server.js
+
+### How to Access the Application
+
+- Register an account: Visit the registration page and create an account.
+
+- Email Verification: Verify your email by clicking on the link sent to your email address.
+- Login: Log in to the application using your credentials.
+- Contributions:
+To contribute, follow these steps below:
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Submit a pull request.
 
 ## License
 
