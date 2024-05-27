@@ -10,24 +10,18 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">   
 
-        <style> @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        <style> @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+
 *
 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
+  
 }
-body 
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #000;
-}
-section 
-{
+section {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -74,189 +68,7 @@ section span:hover
   transition: 0s;
 }
 
-section .signin
-{
-  position: absolute;
-  width: 400px;
-  background: #222;  
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,9);
-}
-section .signin .content 
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  font-size: 1.4em;
-  color: #0f0;
-  text-transform: uppercase;
-}
-section .signin .contenti 
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  font-size: 0.9em;
-  color: #0f0;
-  text-transform: uppercase;
-}
 
-section .signin .content h2 
-{
-  font-size: 2em;
-  color: #0f0;
-  text-transform: uppercase;
-}
-section .signin .contenti h2 
-{
-  font-size: 2em;
-  color: #0f0;
-  text-transform: uppercase;
-}
-section .signin .content .form 
-{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
-}
-section .signin .contenti .form 
-{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
-}
-section .signin .contenti .form .links button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4CAF50;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-section .signin .contenti.form .links button:hover,section .signin .contenti.form .links form button:active,section .signin .contenti.form .links form button:focus {
-  background: #43A047;
-}
-section .signin .contenti..form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-section .signin .contenti..form .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-section .signin .content .form .inputBox
-{
-  position: relative;
-  width: 100%;
-}
-section .signin .contenti .form .inputBox
-{
-  position: relative;
-  width: 100%;
-}
-section .signin .content .form .already
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 30px;
-  font-size: 0.9em;
-  color: #0f0;
-  
-}
-section .signin .content .form .inputBox .input 
-{
-  position: relative;
-  width: 100%;
-  background: #333;
-  border: none;
-  outline: none;
-  padding: 25px 10px 7.5px;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1em;
-}
-section .signin .content .form .inputBox i 
-{
-  position: absolute;
-  left: 0;
-  padding: 15px 10px;
-  font-style: normal;
-  color: #aaa;
-  transition: 0.5s;
-  pointer-events: none;
-}
-.signin .content .form .inputBox input:focus ~ i,
-.signin .content .form .inputBox input:valid ~ i
-{
-  transform: translateY(-7.5px);
-  font-size: 0.8em;
-  color: #fff;
-}
-.signin .content .form .links 
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.signin .contenti .form .links 
-{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.signin .content .form .linkscheckbox
-{
-  color: #fff;
-  text-decoration: none;
-}
-.signin .content .form .links a:nth-child(2)
-{
-  color: #0f0;
-  font-weight: 600;
-}
-.signin .content .form .inputBox input[type="submit"]
-{
-  padding: 10px;
-  background: #0f0;
-  color: #000;
-  font-weight: 600;
-  font-size: 1.35em;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-}
-input[type="submit"]:active
-{
-  opacity: 0.6;
-}
 @media (max-width: 900px)
 {
   section span 
@@ -275,7 +87,115 @@ input[type="submit"]:active
 
 } 
 
-</style>
+.login-page {
+  position: absolute;
+  width: 400px;
+  background: #222;  
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 4px;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #000000#808080;
+  max-width: 360px;
+  margin: 0 auto auto;
+  padding: 45px;
+  text-align: center;
+  font-size: 16px;
+ 
+ 
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #FFFFFF;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; 
+} 
+.container .header h2 
+{
+  font-size: 2em;
+  color: #0f0;
+  text-transform: uppercase;
+}
+    
+ </style>
        
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -285,7 +205,5 @@ input[type="submit"]:active
 
                 {{ $slot }}
         
-    
-        </section>
     </body>
 </html>
