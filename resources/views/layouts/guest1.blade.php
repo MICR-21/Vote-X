@@ -146,6 +146,7 @@ section span:hover
 .form .message a {
   color: #4CAF50;
   text-decoration: none;
+  font-size: 15px;
 }
 .form .register-form {
   display: none;
@@ -194,7 +195,11 @@ body {
   color: #0f0;
   text-transform: uppercase;
 }
-    
+.text-white {
+    color: white;
+    text-transform: uppercase;
+}
+ 
  </style>
        
         <!-- Scripts -->

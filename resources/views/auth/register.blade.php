@@ -45,13 +45,16 @@
         </div>
 
         <div>
-            <a href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+    
 
-            <x-primary-button class="btn btn-primary">
+
+            <button class="btn btn-primary">
                 {{ __('Register') }}
-            </x-primary-button>
+            </button>
+            
+            <a href="{{ route('login') }}" class="text-xs-white">
+    {{ __('Already registered?') }}
+</a>
             </form>
         </div>
         </div>
