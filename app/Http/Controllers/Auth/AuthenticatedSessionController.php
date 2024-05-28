@@ -32,14 +32,14 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except
-    //     ([
-    //         'logout','locked','unlock'
-    //      ]);
+    public function __construct()
+    {
+        $this->middleware('guest')->except
+        ([
+            'logout','locked','unlock'
+         ]);
 
-    // }
+    }
 
     /**
      * Destroy an authenticated session.
