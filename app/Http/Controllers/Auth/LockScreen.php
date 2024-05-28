@@ -5,7 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
 Use session;
-use Charles\Msg\Facades\Msg;
+use Brian2694\Toastr\Facades\Toastr;
+
+
 
 class LockScreen extends Controller
 {
@@ -34,7 +36,7 @@ class LockScreen extends Controller
         );
         if(!$check)
         {
-            Msg::error('fail, Your password does not match','Error');
+            Toastr::error('fail, Your password does not match','Error');
             return redirect()->route('lock_screen');
         }
         session(['lock-expires-at'=>now()->addMinutes($request->user()->getLockoutTime())]);
