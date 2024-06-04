@@ -28,18 +28,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $request->session(['lock-expires-at'=>now()->addMinutes($request->user()->getLockoutTime())]);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    public function __construct()
-    {
-        $this->middleware('guest')->except
-        ([
-            'logout','locked','unlock'
-         ]);
-
-    }
 
     /**
      * Destroy an authenticated session.
