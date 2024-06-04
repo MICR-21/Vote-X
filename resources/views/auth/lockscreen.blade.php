@@ -10,7 +10,7 @@
     <div id="lockScreen">
         <div class="lock-container">
             <!-- Session Status -->
-            {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <!-- Error Message -->
             @if(session()->has('error'))

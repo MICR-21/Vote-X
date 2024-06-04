@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <!-- Lock Screen Link -->
+                    <x-nav-link :href="route('lock_screen')" :active="request()->routeIs('lock_screen')">
+                        {{ __('Lock Screen') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +73,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <!-- Responsive Lock Screen Link -->
+            <x-responsive-nav-link :href="route('lock_screen')" :active="request()->routeIs('lock_screen')">
+                {{ __('Lock Screen') }}
             </x-responsive-nav-link>
         </div>
 

@@ -16,7 +16,7 @@ class LockScreen
     public function handle(Request $request, Closure $next): Response
     {
         if ($request->user()) {
-            return Auth::user()->isLocked == 0 ? redirect('lock-screen') : $next($request);
+            return Auth::user()->isLocked == 1 ? redirect('lock-screen') : $next($request);
         }
         return $next($request);
     }
