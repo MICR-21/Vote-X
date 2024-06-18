@@ -151,19 +151,19 @@
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
-                    <div class="mt-4">
-                        <x-primary-button class="btn btn-primary">
-                            {{ __('Register') }}
-                        </x-primary-button>
-                    </div>
+        <div>
 
-                    <div class="already-registered">
-                        <a href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-                    </div>
-                </form>
-            </div>
+
+
+            <button class="btn btn-primary">
+                {{ __('Register') }}
+            </button>
+
+            <a href="{{ route('login') }}" class="text-xs-white">
+    {{ __('Already registered?') }}
+</a>
+            </form>
+        </div>
         </div>
     </div>
 </body>

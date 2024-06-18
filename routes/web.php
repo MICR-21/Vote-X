@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/profile/update-picture', [UserController::class, 'updateProfilePicture'])->name('profile.update.picture');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,19 +33,12 @@ Route::middleware(['auth', 'locked.screen'])->group(function () {
         return view('dashboard');
     })->middleware('verified')->name('dashboard');
 
-    // Profile routes
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::middleware('auth')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Unlock route
-    Route::post('unlock', [LockScreen::class, 'unlock'])->name('unlock');
 });
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
-// Lock screen action route
-Route::post('lock-screen', [LockScreen::class, 'lockScreen'])->name('lock_screen');
-
-// Logout route
-Route::post('/logout', [LockScreen::class, 'logout'])->name('logout');
 
 require __DIR__.'/auth.php';

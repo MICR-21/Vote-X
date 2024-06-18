@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">   
 
         <style> @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+
 *
 {
   margin: 0;
@@ -140,21 +143,21 @@ section .signin .contenti .form
   flex-direction: column;
   gap: 45px;
 }
-section .signin .contenti .form .links button {
+section .signin .content .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #4CAF50;
   width: 100%;
-  border: 0;
-  padding: 15px;
+  border: 30;
+  padding: 12px;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 15px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
-section .signin .contenti.form .links button:hover,section .signin .contenti.form .links form button:active,section .signin .contenti.form .links form button:focus {
+section .signin .content.form .links button:hover,section .signin .contenti.form .links form button:active,section .signin .contenti.form .links form button:focus {
   background: #43A047;
 }
 section .signin .contenti..form .message {
@@ -274,6 +277,12 @@ input[type="submit"]:active
   }
 
 } 
+.text-xs-white {
+    font-size: 0.9rem; /* 8px */
+    color: white;
+}
+
+
 
 </style>
        
