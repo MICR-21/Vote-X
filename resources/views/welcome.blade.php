@@ -84,9 +84,9 @@
         }
     </style>
     </head>
-    
+    <img src="profile/logo.png" alt="Logo" class="logo">
     <div class="header">
-        WELCOME TO VOTEX
+        WELCOME TO VOTE-X
     </div>
     <div class="description">
         Secure and Reliable E-Voting Platform
