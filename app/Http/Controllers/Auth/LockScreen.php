@@ -19,6 +19,7 @@ class LockScreen extends Controller
 
     public function unlock(Request $request)
     {
+
         $request->validate([
             'password' => 'required|string',
         ]);
@@ -27,18 +28,15 @@ class LockScreen extends Controller
         $check = Hash::check($request->input('password'), $user->password);
 
         if (!$check) {
-            Toastr::error('Fail, your password does not match', 'Error');
+            // echo "Fail, your password does not match", "Error";
             return redirect()->route('lock_screen');
         }
         else{
-            $user->update(['isLocked' => 0]);
-            $user->save();
+            User::where ('id', $request->user()->id)->update(['isLocked' => 0]);
+            // $user->save();
+            Auth::login($user);
             return redirect()->route('dashboard');
 
-        }
-
-        // Re-login the user
-        // Auth::login($user);
-
+            }
     }
 }

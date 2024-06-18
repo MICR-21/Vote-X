@@ -74,7 +74,6 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <!-- Responsive Lock Screen Link -->
             <x-responsive-nav-link :href="route('lock_screen')" :active="request()->routeIs('lock_screen')">
                 {{ __('Lock Screen') }}
             </x-responsive-nav-link>

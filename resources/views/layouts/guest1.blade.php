@@ -107,8 +107,12 @@ section span:hover
   padding: 45px;
   text-align: center;
   font-size: 16px;
-  color: black;
+  color: white;
 
+.input
+{
+    color: black;
+}
 
 }
 .form input {

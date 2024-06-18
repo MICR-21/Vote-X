@@ -13,7 +13,7 @@
 
         <div class="inputBox">
             <x-input-label for="email" :value="__('Email')" />
-            <input id="email" class="inputBox"type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <input id="email"  class="input"    class="inputBox"type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" />
         </div>
 
@@ -21,7 +21,7 @@
         <div class="inputBox">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="inputBox"
+            <x-text-input id="password" class="inputBox" class="input"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />

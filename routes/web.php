@@ -19,27 +19,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard route
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','locked.screen'])->name('dashboard');
+// Lock screen routes
+Route::get('/lock-screen', function () {
+    return view('auth.lockscreen');
+})->name('lock_screen');
 
-// Group routes that require authentication
-Route::middleware('auth')->group(function () {
-    // Lock screen routes
-    Route::get('/lock-screen', function () {
-        return view('auth.lockscreen');
-    }) ->name('lock_screen');
+// Routes that require authentication and screen lock check
+Route::middleware(['auth', 'locked.screen'])->group(function () {
+    // Dashboard route
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware('verified')->name('dashboard');
 
-    Route::post('lock-screen', [LockScreen::class, 'lockScreen'])->name('lock_screen');
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Unlock route
     Route::post('unlock', [LockScreen::class, 'unlock'])->name('unlock');
-
-    // Group routes that are protected by the lock screen middleware
-    Route::middleware('locked.screen')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
 });
+
+// Lock screen action route
+Route::post('lock-screen', [LockScreen::class, 'lockScreen'])->name('lock_screen');
+
+// Logout route
+Route::post('/logout', [LockScreen::class, 'logout'])->name('logout');
 
 require __DIR__.'/auth.php';
