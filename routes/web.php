@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//lock screen 
+Route::get('lock_screen', [App\Http\Controllers\Auth\LockScreen::class, 'lockScreen'])-> name('lock_screen');
+Route::post('unlock',[App\Http\Controllers\Auth\LockScreen::class,'unlock'])->name('unlock');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
