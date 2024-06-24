@@ -7,6 +7,7 @@
                 <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
                     {{ __('Dashboard') }}
                 </x-nav-link>
+
             </div>
 
             <!-- Settings Dropdown -->

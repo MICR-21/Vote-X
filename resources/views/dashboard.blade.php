@@ -2,7 +2,8 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
-        </h2> <a href="{{ route('lock_screen') }}" >Lock Screen</a>
+        </h2>
+        <a href="{{ route('lock_screen') }}">Lock Screen</a>
     </x-slot>
 
     <div class="py-12">
@@ -13,10 +14,12 @@
                 </div>
             </div>
         </div>
-    </header>
-    <main>
+    </div>
+
+    {{-- <main>
         <h1>WELCOME TO VOTE-X <span>{{ Auth::user()->name }}</span></h1>
     </main>
+
     <div class="sidebar" id="sidebar">
         <h2>Edit Profile</h2>
         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
@@ -38,7 +41,8 @@
                 <button type="submit">Save Changes</button>
             </div>
         </form>
-    </div>
+    </div> --}}
+
     <script>
         function handleLogout(event) {
             event.preventDefault();
@@ -66,5 +70,4 @@
             window.history.pushState(null, "", window.location.href);
         };
     </script>
-</body>
-</html>
+</x-app-layout>
