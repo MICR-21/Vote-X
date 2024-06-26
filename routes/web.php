@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,10 +42,15 @@ Route::get('/candidate',[CandidateController::class,'index'])->name('candidates'
 //contact Us
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('contactUs');
 })->name('contact');
 
 Route::post('/contact', [ContactUsController::class, 'submit'])->name('contact.submit');
+
+//election routes
+Route::resource('elections', ElectionController::class);
+
+// Route::get('elections/{election}', [ElectionController::class, 'showCandidates'])->name('elections.showCandidates');
 
 
 // Profile routes

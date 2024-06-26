@@ -13,8 +13,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Favicons -->
-    {{-- <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico">
-    <meta name="theme-color" content="#7952b3"> --}}
+    <!-- <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico"> -->
+    <!-- <meta name="theme-color" content="#7952b3"> -->
 
     <style>
         .bd-placeholder-img {
@@ -73,7 +73,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="candidates-container">
                     <!-- Existing candidate cards go here -->
                     <!-- Example Candidate 1 -->
-                    <div class="col">
+                    <div class="col" id="candidate-1">
                         <div class="card shadow-sm">
                             <img src="path_to_candidate_image.jpg" class="bd-placeholder-img card-img-top" width="100%"
                                 height="225" alt="Candidate 1">
@@ -173,8 +173,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="edit-candidateImageURL" class="form-label">Image URL</label>
-                            <input type="url" class="form-control" id="edit-candidateImageURL"
-                                placeholder="https://example.com/image.jpg">
+                            <input type="url" class="form-control" id="edit-candidateImageURL" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                     </form>
@@ -202,126 +201,129 @@
         </div>
     </div>
 
-    <footer class="text-muted py-5 bg-dark">
+    <footer class="text-muted py-5">
         <div class="container">
-            <p class="float-end mb-1">
-                <a href="#">Back to top</a>
-            </p>
+            <p class="mb-1">Your footer content here.</p>
+            <p class="mb-0"><a href="#">Back to top</a></p>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/1CmRXW5a5UstcUJ4cw2a1B0+4uK9vPCwhb49EYk5NRugygsdqyN6Jw5vBr/m2Mg" crossorigin="anonymous">
+    </script>
+    <!-- Custom JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const addCandidateForm = document.getElementById('add-candidate-form');
-            const editCandidateForm = document.getElementById('edit-candidate-form');
+        // JavaScript for handling candidate actions
+
+        // Event listener for add candidate form submission
+        document.getElementById('add-candidate-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('candidateName').value;
+            const description = document.getElementById('candidateDescription').value;
+            const party = document.getElementById('candidateParty').value;
+            const image = document.getElementById('candidateImage').value;
+
+            // Add new candidate card
             const candidatesContainer = document.getElementById('candidates-container');
+            const newCandidateId = Date.now().toString(); // Unique ID based on current timestamp
 
-            addCandidateForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const name = document.getElementById('candidateName').value;
-                const description = document.getElementById('candidateDescription').value;
-                const party = document.getElementById('candidateParty').value;
-                const image = document.getElementById('candidateImage').value;
-
-                const newCandidateHtml = `
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="${image}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="${name}">
-                            <div class="card-body">
-                                <h5 class="card-title">${name}</h5>
-                                <p class="card-text">${description}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <button type="button" class="btn btn-sm btn-success view-candidate-btn" data-bs-toggle="modal" data-bs-target="#viewCandidateModal" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">View</button>
-                                    <button type="button" class="btn btn-sm btn-primary edit-candidate-btn" data-bs-toggle="modal" data-bs-target="#editCandidateModal" data-id="new" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">Edit</button>
-                                    <button type="button" class="btn btn-sm btn-danger delete-candidate-btn" data-id="new">Delete</button>
-                                    <small class="text-muted">${party}</small>
-                                </div>
+            const newCandidateCard = `
+                <div class="col" id="candidate-${newCandidateId}">
+                    <div class="card shadow-sm">
+                        <img src="${image}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="${name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${name}</h5>
+                            <p class="card-text">${description}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-sm btn-success view-candidate-btn" data-bs-toggle="modal" data-bs-target="#viewCandidateModal" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">View</button>
+                                <button type="button" class="btn btn-sm btn-primary edit-candidate-btn" data-bs-toggle="modal" data-bs-target="#editCandidateModal" data-id="${newCandidateId}" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">Edit</button>
+                                <button type="button" class="btn btn-sm btn-danger delete-candidate-btn" data-id="${newCandidateId}">Delete</button>
+                                <small class="text-muted">${party}</small>
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
 
-                candidatesContainer.insertAdjacentHTML('beforeend', newCandidateHtml);
-                addCandidateForm.reset();
-                document.querySelector('#addCandidateModal .btn-close').click();
-            });
+            candidatesContainer.insertAdjacentHTML('beforeend', newCandidateCard);
+            document.getElementById('add-candidate-form').reset();
+            new bootstrap.Modal(document.getElementById('addCandidateModal')).hide();
+        });
 
-            candidatesContainer.addEventListener('click', function (e) {
-                if (e.target.classList.contains('view-candidate-btn')) {
-                    const button = e.target;
-                    const name = button.getAttribute('data-name');
-                    const description = button.getAttribute('data-description');
-                    const party = button.getAttribute('data-party');
-                    const image = button.getAttribute('data-image');
+        // Event listener for edit candidate button click
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('edit-candidate-btn')) {
+                const candidateId = event.target.getAttribute('data-id');
+                const name = event.target.getAttribute('data-name');
+                const description = event.target.getAttribute('data-description');
+                const party = event.target.getAttribute('data-party');
+                const image = event.target.getAttribute('data-image');
 
-                    document.getElementById('view-candidate-name').textContent = name;
-                    document.getElementById('view-candidate-description').textContent = description;
-                    document.getElementById('view-candidate-party').textContent = party;
-                    document.getElementById('view-candidate-image').src = image;
-                }
+                document.getElementById('edit-candidate-id').value = candidateId;
+                document.getElementById('edit-candidateName').value = name;
+                document.getElementById('edit-candidateDescription').value = description;
+                document.getElementById('edit-candidateParty').value = party;
+                document.getElementById('edit-candidateImageURL').value = image;
+            }
+        });
 
-                if (e.target.classList.contains('edit-candidate-btn')) {
-                    const button = e.target;
-                    const id = button.getAttribute('data-id');
-                    const name = button.getAttribute('data-name');
-                    const description = button.getAttribute('data-description');
-                    const party = button.getAttribute('data-party');
-                    const image = button.getAttribute('data-image');
+        // Event listener for edit candidate form submission
+        document.getElementById('edit-candidate-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const candidateId = document.getElementById('edit-candidate-id').value;
+            const name = document.getElementById('edit-candidateName').value;
+            const description = document.getElementById('edit-candidateDescription').value;
+            const party = document.getElementById('edit-candidateParty').value;
+            const image = document.getElementById('edit-candidateImageURL').value;
 
-                    document.getElementById('edit-candidate-id').value = id;
-                    document.getElementById('edit-candidateName').value = name;
-                    document.getElementById('edit-candidateDescription').value = description;
-                    document.getElementById('edit-candidateParty').value = party;
-                    document.getElementById('edit-candidateImageURL').value = image;
-                }
+            // Update candidate card
+            const candidateCard = document.getElementById(`candidate-${candidateId}`);
+            candidateCard.querySelector('.card-img-top').src = image;
+            candidateCard.querySelector('.card-title').textContent = name;
+            candidateCard.querySelector('.card-text').textContent = description;
+            candidateCard.querySelector('.text-muted').textContent = party;
 
-                if (e.target.classList.contains('delete-candidate-btn')) {
-                    const button = e.target;
-                    const id = button.getAttribute('data-id');
-                    const confirmation = confirm("Are you sure you want to delete this candidate?");
-                    if (confirmation) {
-                        button.closest('.col').remove();
-                        console.log(`Candidate with id ${id} has been deleted.`);
-                    }
-                }
-            });
+            // Update data attributes for view and edit buttons
+            const viewButton = candidateCard.querySelector('.view-candidate-btn');
+            viewButton.setAttribute('data-name', name);
+            viewButton.setAttribute('data-description', description);
+            viewButton.setAttribute('data-party', party);
+            viewButton.setAttribute('data-image', image);
 
-            editCandidateForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const id = document.getElementById('edit-candidate-id').value;
-                const name = document.getElementById('edit-candidateName').value;
-                const description = document.getElementById('edit-candidateDescription').value;
-                const party = document.getElementById('edit-candidateParty').value;
-                const image = document.getElementById('edit-candidateImageURL').value;
+            const editButton = candidateCard.querySelector('.edit-candidate-btn');
+            editButton.setAttribute('data-name', name);
+            editButton.setAttribute('data-description', description);
+            editButton.setAttribute('data-party', party);
+            editButton.setAttribute('data-image', image);
 
-                const candidateCards = candidatesContainer.querySelectorAll('.col');
-                candidateCards.forEach(function (card) {
-                    const viewButton = card.querySelector('.view-candidate-btn');
-                    if (viewButton.getAttribute('data-id') === id) {
-                        card.querySelector('.card-title').textContent = name;
-                        card.querySelector('.card-text').textContent = description;
-                        card.querySelector('.text-muted').textContent = party;
-                        card.querySelector('.card-img-top').src = image;
+            new bootstrap.Modal(document.getElementById('editCandidateModal')).hide();
+        });
 
-                        viewButton.setAttribute('data-name', name);
-                        viewButton.setAttribute('data-description', description);
-                        viewButton.setAttribute('data-party', party);
-                        viewButton.setAttribute('data-image', image);
+        // Event listener for view candidate button click
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('view-candidate-btn')) {
+                const name = event.target.getAttribute('data-name');
+                const description = event.target.getAttribute('data-description');
+                const party = event.target.getAttribute('data-party');
+                const image = event.target.getAttribute('data-image');
 
-                        const editButton = card.querySelector('.edit-candidate-btn');
-                        editButton.setAttribute('data-name', name);
-                        editButton.setAttribute('data-description', description);
-                        editButton.setAttribute('data-party', party);
-                        editButton.setAttribute('data-image', image);
-                    }
-                });
+                document.getElementById('view-candidate-name').textContent = name;
+                document.getElementById('view-candidate-description').textContent = description;
+                document.getElementById('view-candidate-party').textContent = party;
+                document.getElementById('view-candidate-image').src = image;
+            }
+        });
 
-                document.querySelector('#editCandidateModal .btn-close').click();
-            });
+        // Event listener for delete candidate button click
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('delete-candidate-btn')) {
+                const candidateId = event.target.getAttribute('data-id');
+                document.getElementById(`candidate-${candidateId}`).remove();
+            }
         });
     </script>
+
 </body>
 
 </html>
