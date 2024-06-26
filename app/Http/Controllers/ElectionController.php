@@ -67,5 +67,22 @@ class ElectionController extends Controller
 
         return view('elections.candidates', compact('candidates'));
     }
+//     public function showElectionPage()
+// {
+//     $candidates = Candidate::all(); // Assuming you have a Candidate model
+//     return view('election', compact('candidates'));
+// }
+//     public function submitVote(Request $request)
+// {
+//     $request->validate([
+//         'candidate_id' => 'required|exists:candidates,id',
+//     ]);
+
+//     // Process the vote, e.g., save to the database
+
+//     return redirect()->back()->with('success', 'Your vote has been submitted!');
+// }
+
+
 }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 /*
@@ -33,11 +34,19 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
+});
+
+
+
 //admin route
 Route::get('/admin',[HomeController::class,'index'])->name('admins');
 
 //candidate route
 Route::get('/candidate',[CandidateController::class,'index'])->name('candidates');
+
 
 //contact Us
 
@@ -49,6 +58,8 @@ Route::post('/contact', [ContactUsController::class, 'submit'])->name('contact.s
 
 //election routes
 Route::resource('elections', ElectionController::class);
+// Route::post('/submit-vote', [ElectionController::class, 'submitVote'])->name('submitVote');
+
 
 // Route::get('elections/{election}', [ElectionController::class, 'showCandidates'])->name('elections.showCandidates');
 

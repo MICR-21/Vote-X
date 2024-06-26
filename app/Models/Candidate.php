@@ -14,6 +14,7 @@ class Candidate extends Model
     {
         return $this->belongsTo(Election::class);
     }
+
 }
 
 

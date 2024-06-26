@@ -10,9 +10,9 @@
                 <x-nav-link :href="route('lock_screen')" :active="request()->routeIs('lock_screen')" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
                     {{ __('Lock Screen') }}
                 </x-nav-link>
-                {{-- <x-nav-link :href="route('elections.index')" :active="request()->routeIs('elections.index')" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
-                    {{ __('Elections') }}
-                </x-nav-link> --}}
+                <x-nav-link :href="route('admins')" :active="request()->routeIs('admins')" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
+                    {{ __('Admin Dash') }}
+                </x-nav-link>
             </div>
 
             <!-- Settings Dropdown -->
@@ -38,7 +38,6 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -69,9 +68,6 @@
             <x-responsive-nav-link :href="route('lock_screen')" :active="request()->routeIs('lock_screen')" class="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
                 {{ __('Lock Screen') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('elections.index')" :active="request()->routeIs('elections.index')" class="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
-                {{ __('Elections') }}
-            </x-responsive-nav-link>
         </div>
 
         @auth
@@ -90,7 +86,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="block px-4 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-300">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

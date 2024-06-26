@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Management</title>
+    <title>Manage Elections</title>
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -22,16 +22,9 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .card-img-top {
-            object-fit: cover;
-        }
-
-        .card-body {
-            text-align: center;
-        }
-
-        footer a {
-            color: #7952b3;
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -39,7 +32,7 @@
 
 <header class="bg-dark py-3">
     <div class="container">
-        <a href="#" class="navbar-brand text-white">Voting Candidates</a>
+        <a href="#" class="navbar-brand text-white">Manage Elections</a>
     </div>
 </header>
 
@@ -47,132 +40,242 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Candidates</h1>
-                <p class="lead text-muted">Meet the candidates for the upcoming election. Learn more about their
-                    background, policies, and vision for the future.</p>
+                <h1 class="fw-light">Elections</h1>
+                <p class="lead text-muted">Manage the elections for the upcoming voting period. Add new elections to the list, edit existing ones, and view results.</p>
+                <button class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#addElectionModal">Add Election</button>
             </div>
         </div>
     </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="candidates-container">
-                <!-- Dynamic content for candidates will be inserted here -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="elections-container">
+                <!-- Election cards will be dynamically added here -->
             </div>
-            <button class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#addCandidateModal">Add Candidate</button>
         </div>
     </div>
 </main>
 
-<!-- Modal for adding candidate -->
-<div class="modal fade" id="addCandidateModal" tabindex="-1" aria-labelledby="addCandidateModalLabel"
-     aria-hidden="true">
+<!-- Modal for adding election -->
+<div class="modal fade" id="addElectionModal" tabindex="-1" aria-labelledby="addElectionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCandidateModalLabel">Add New Candidate</h5>
+                <h5 class="modal-title" id="addElectionModalLabel">Add New Election</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="add-candidate-form">
+                <form id="add-election-form">
                     <div class="mb-3">
-                        <label for="candidateName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="candidateName" required>
+                        <label for="electionName" class="form-label">Election Name</label>
+                        <input type="text" class="form-control" id="electionName" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="candidateDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="candidateDescription" rows="3" required></textarea>
+                        <label for="electionDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="electionDescription" name="description" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="candidateParty" class="form-label">Party</label>
-                        <input type="text" class="form-control" id="candidateParty" required>
+                        <label for="electionStart" class="form-label">Start Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="electionStart" name="start" required>
                     </div>
                     <div class="mb-3">
-                        <label for="candidateImageFile" class="form-label">Upload Image File</label>
-                        <input type="file" class="form-control" id="candidateImageFile" accept="image/png, image/jpeg">
-                        <small class="text-muted">Or</small>
+                        <label for="electionEnd" class="form-label">End Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="electionEnd" name="end" required>
                     </div>
                     <div class="mb-3">
-                        <label for="candidateImage" class="form-label">Image URL</label>
-                        <input type="url" class="form-control" id="candidateImage" required>
+                        <label for="electionCandidates" class="form-label">Candidates</label>
+                        <textarea class="form-control" id="electionCandidates" name="candidates" rows="3" placeholder="Enter candidate names separated by commas" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Candidate</button>
+                    <button type="submit" class="btn btn-primary">Add Election</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- JavaScript libraries -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Modal for viewing election -->
+<div class="modal fade" id="viewElectionModal" tabindex="-1" aria-labelledby="viewElectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewElectionModalLabel">View Election</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 id="view-election-name" class="mt-3"></h5>
+                <p id="view-election-description"></p>
+                <p><strong>Start Date & Time:</strong> <span id="view-election-start"></span></p>
+                <p><strong>End Date & Time:</strong> <span id="view-election-end"></span></p>
+                <p><strong>Candidates:</strong></p>
+                <ul id="view-election-candidates"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for editing election -->
+<div class="modal fade" id="editElectionModal" tabindex="-1" aria-labelledby="editElectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editElectionModalLabel">Edit Election</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-election-form">
+                    <input type="hidden" id="edit-election-id">
+                    <div class="mb-3">
+                        <label for="edit-electionName" class="form-label">Election Name</label>
+                        <input type="text" class="form-control" id="edit-electionName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-electionDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="edit-electionDescription" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-electionStart" class="form-label">Start Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-electionStart" name="start" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-electionEnd" class="form-label">End Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="edit-electionEnd" name="end" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-electionCandidates" class="form-label">Candidates</label>
+                        <textarea class="form-control" id="edit-electionCandidates" name="candidates" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for deleting election -->
+<div class="modal fade" id="deleteElectionModal" tabindex="-1" aria-labelledby="deleteElectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteElectionModalLabel">Delete Election</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this election?</p>
+                <input type="hidden" id="delete-election-id">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-election">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const addCandidateForm = document.getElementById('add-candidate-form');
-        const candidatesContainer = document.getElementById('candidates-container');
+    document.addEventListener('DOMContentLoaded', function() {
+        const elections = [];
 
-        addCandidateForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = document.getElementById('candidateName').value;
-            const description = document.getElementById('candidateDescription').value;
-            const party = document.getElementById('candidateParty').value;
-            const image = document.getElementById('candidateImage').value;
-
-            const newCandidateHtml = `
-                <div class="col">
+        function renderElections() {
+            const container = document.getElementById('elections-container');
+            container.innerHTML = '';
+            elections.forEach((election, index) => {
+                const card = document.createElement('div');
+                card.className = 'col';
+                card.innerHTML = `
                     <div class="card shadow-sm">
-                        <img src="${image}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="${name}">
                         <div class="card-body">
-                            <h5 class="card-title">${name}</h5>
-                            <p class="card-text">${description}</p>
+                            <h5 class="card-title">${election.name}</h5>
+                            <p class="card-text">${election.description}</p>
+                            <p class="card-text"><small class="text-muted">Start: ${new Date(election.start).toLocaleString()}</small></p>
+                            <p class="card-text"><small class="text-muted">End: ${new Date(election.end).toLocaleString()}</small></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-sm btn-success view-candidate-btn" data-bs-toggle="modal" data-bs-target="#viewCandidateModal" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">View</button>
-                                <button type="button" class="btn btn-sm btn-primary edit-candidate-btn" data-bs-toggle="modal" data-bs-target="#editCandidateModal" data-id="new" data-name="${name}" data-description="${description}" data-party="${party}" data-image="${image}">Edit</button>
-                                <button type="button" class="btn btn-sm btn-danger delete-candidate-btn" data-id="new">Delete</button>
-                                <small class="text-muted">${party}</small>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#viewElectionModal" onclick="viewElection(${index})">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editElectionModal" onclick="editElection(${index})">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteElectionModal" onclick="deleteElection(${index})">Delete</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+                container.appendChild(card);
+            });
+        }
 
-            candidatesContainer.insertAdjacentHTML('beforeend', newCandidateHtml);
-            addCandidateForm.reset();
-            document.querySelector('#addCandidateModal .btn-close').click();
+        document.getElementById('add-election-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('electionName').value;
+            const description = document.getElementById('electionDescription').value;
+            const start = document.getElementById('electionStart').value;
+            const end = document.getElementById('electionEnd').value;
+            const candidates = document.getElementById('electionCandidates').value.split(',');
+
+            elections.push({ name, description, start, end, candidates });
+
+            renderElections();
+            document.getElementById('add-election-form').reset();
+            const addElectionModal = document.getElementById('addElectionModal');
+            const modalInstance = bootstrap.Modal.getInstance(addElectionModal);
+            modalInstance.hide();
         });
 
-        candidatesContainer.addEventListener('click', function (e) {
-            if (e.target.classList.contains('view-candidate-btn')) {
-                const button = e.target;
-                const name = button.getAttribute('data-name');
-                const description = button.getAttribute('data-description');
-                const party = button.getAttribute('data-party');
-                const image = button.getAttribute('data-image');
+        window.viewElection = function(index) {
+            const election = elections[index];
+            document.getElementById('view-election-name').textContent = election.name;
+            document.getElementById('view-election-description').textContent = election.description;
+            document.getElementById('view-election-start').textContent = new Date(election.start).toLocaleString();
+            document.getElementById('view-election-end').textContent = new Date(election.end).toLocaleString();
+            const candidatesList = document.getElementById('view-election-candidates');
+            candidatesList.innerHTML = '';
+            election.candidates.forEach(candidate => {
+                const listItem = document.createElement('li');
+                listItem.textContent = candidate;
+                candidatesList.appendChild(listItem);
+            });
+        }
 
-                // Implement viewing logic (if needed)
-            }
+        window.editElection = function(index) {
+            const election = elections[index];
+            document.getElementById('edit-election-id').value = index;
+            document.getElementById('edit-electionName').value = election.name;
+            document.getElementById('edit-electionDescription').value = election.description;
+            document.getElementById('edit-electionStart').value = election.start;
+            document.getElementById('edit-electionEnd').value = election.end;
+            document.getElementById('edit-electionCandidates').value = election.candidates.join(',');
+        }
 
-            if (e.target.classList.contains('edit-candidate-btn')) {
-                const button = e.target;
-                const id = button.getAttribute('data-id');
-                const name = button.getAttribute('data-name');
-                const description = button.getAttribute('data-description');
-                const party = button.getAttribute('data-party');
-                const image = button.getAttribute('data-image');
+        document.getElementById('edit-election-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const index = document.getElementById('edit-election-id').value;
+            elections[index].name = document.getElementById('edit-electionName').value;
+            elections[index].description = document.getElementById('edit-electionDescription').value;
+            elections[index].start = document.getElementById('edit-electionStart').value;
+            elections[index].end = document.getElementById('edit-electionEnd').value;
+            elections[index].candidates = document.getElementById('edit-electionCandidates').value.split(',');
 
-                // Implement editing logic (if needed)
-            }
-
-            if (e.target.classList.contains('delete-candidate-btn')) {
-                const button = e.target;
-                const id = button.getAttribute('data-id');
-                const confirmation = confirm("Are you sure you want to delete this candidate?");
-                if (confirmation) {
-                    button.closest('.col').remove();
-                    console.log(`Candidate with id ${id} has been deleted.`);
-                }
-            }
+            renderElections();
+            const editElectionModal = document.getElementById('editElectionModal');
+            const modalInstance = bootstrap.Modal.getInstance(editElectionModal);
+            modalInstance.hide();
         });
+
+        window.deleteElection = function(index) {
+            document.getElementById('delete-election-id').value = index;
+        }
+
+        document.getElementById('confirm-delete-election').addEventListener('click', function() {
+            const index = document.getElementById('delete-election-id').value;
+            elections.splice(index, 1);
+
+            renderElections();
+            const deleteElectionModal = document.getElementById('deleteElectionModal');
+            const modalInstance = bootstrap.Modal.getInstance(deleteElectionModal);
+            modalInstance.hide();
+        });
+
+        renderElections();
     });
 </script>
 
