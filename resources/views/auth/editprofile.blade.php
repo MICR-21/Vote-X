@@ -63,10 +63,7 @@
                             <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
                             <label for="email">Email</label>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="profile_picture">Profile Picture</label>
-                            <input type="file" class="form-control" id="profile_picture" name="profile_picture">
-                        </div>
+                        
                         <button type="submit" class="w-100 btn btn-lg btn-primary">Save Changes</button>
                     </form>
                 </div>

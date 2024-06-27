@@ -1,4 +1,4 @@
-<x-guest-layout>
+
     <style>
         .login-container {
             display: flex;
@@ -172,4 +172,4 @@
             </form>
         </div>
     </div>
-</x-guest-layout>
+

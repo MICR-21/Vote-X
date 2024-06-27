@@ -17,350 +17,219 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+    <!-- ./wrapper -->
+    <div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admins') }}" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('contact') }}" class="nav-link">Contact</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('candidates') }}" class="nav-link">Manage Candidate</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('elections.index') }}" class="nav-link">Manage Elections</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('logout') }}" class="nav-link">Logout</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
-    </li>
+        @include('navbar')
 
-    </ul>
+      <!-- Main Sidebar Container -->
+        @include('sidebar')
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0">Admin Dashboard</h1>
+              </div><!-- /.col -->
+              <!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
         </div>
-      </li>
+        <!-- /.content-header -->
 
-      <li id="notification-dropdown" class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span id="notification-badge" class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <div id="notification-messages">
-            <!-- Messages will be dynamically added here -->
-          </div>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-
-
-
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset("assets/dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-            <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class=" img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Election Statistics -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Election Statistics</h5>
+              <p class="card-text">
+                Overview of current elections, including the number of candidates, voters, and ongoing polls.
               </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+              <ul>
+                <li>Total Candidates: 25</li>
+                <li>Total Voters: 1000</li>
+                <li>Ongoing Polls: 5</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Recent Activities -->
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <h5 class="card-title">Recent Activities</h5>
+              <p class="card-text">
+                Latest actions taken by administrators and users within the e-voting platform.
               </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Admin Dashboard</h1>
-          </div><!-- /.col -->
-          <!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+              <ul>
+                <li>New candidate registered for Presidential Election</li>
+                <li>Poll for Local Council Election started</li>
+                <li>Voter John Doe updated profile</li>
+              </ul>
+              <a href="#" class="card-link">View all activities</a>
             </div>
           </div>
-          <!-- /.col-md-6 -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
+        <!-- /.col-md-6 -->
+
+        <!-- Management Options -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">Manage Elections</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Election Management Tools</h6>
+              <p class="card-text">
+                Access tools to create, edit, and monitor elections.
+              </p>
+              <a href="{{ route('elections.index') }}" class="btn btn-primary">Create New Election</a>
+              <a href="#" class="btn btn-secondary">Edit Existing Elections</a>
+            </div>
+          </div>
+
+          <!-- Manage Candidates -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="m-0">Manage Candidates</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Candidate Management Tools</h6>
+              <p class="card-text">
+                Tools to add, edit, and remove candidates for various elections.
+              </p>
+              <a href="#" class="btn btn-primary">Add New Candidate</a>
+              <a href="#" class="btn btn-secondary">Edit Candidates</a>
+            </div>
+          </div>
+
+          <!-- System Notifications -->
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h5 class="m-0">System Notifications</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Important Updates and Alerts</h6>
+              <p class="card-text">
+                Stay informed with the latest system updates and alerts related to the e-voting platform.
+              </p>
+              <ul>
+                <li>System maintenance scheduled for July 1, 2024</li>
+                <li>New security patch released</li>
+              </ul>
+              <a href="#" class="btn btn-primary">View all notifications</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- Voter Statistics -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Voter Statistics</h5>
+              <p class="card-text">
+                Detailed statistics about voter registration and participation.
+              </p>
+              <ul>
+                <li>Registered Voters: 1000</li>
+                <li>Active Voters: 850</li>
+                <li>Inactive Voters: 150</li>
+              </ul>
+              <a href="#" class="btn btn-primary">View Detailed Statistics</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+
+        <!-- Election Reports -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Election Reports</h5>
+              <p class="card-text">
+                Access comprehensive reports on past and ongoing elections.
+              </p>
+              <a href="#" class="btn btn-primary">View Reports</a>
+              <a href="#" class="btn btn-secondary">Download Reports</a>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
   </div>
-  <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="{{ asset("assets/plugins/jquery/jquery.min.js") }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset ("assets/plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
-</body>
-</html>
-<script>
-    // Simulate a function that triggers a new message notification
-    function notifyNewEvent(type, name) {
-      // Increment badge count
-      let badge = document.getElementById('notification-badge');
-      let currentCount = parseInt(badge.innerText);
-      badge.innerText = currentCount + 1;
-
-      // Create new message item
-      let messagesDiv = document.getElementById('notification-messages');
-      let newItem = document.createElement('a');
-      newItem.classList.add('dropdown-item');
-
-      // Message content
-      newItem.innerHTML = `
-        <div class="media">
-          <img src="${getImageUrlForType(type)}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-          <div class="media-body">
-            <h3 class="dropdown-item-title">
-              ${name}
-              <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-            </h3>
-            <p class="text-sm">${type === 'candidate' ? 'New candidate created' : 'New election created'}</p>
-            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> Just now</p>
-          </div>
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+          <h5>Title</h5>
+          <p>Sidebar content</p>
         </div>
-      `;
+      </aside>
+      <!-- /.control-sidebar -->
 
-      messagesDiv.insertBefore(newItem, messagesDiv.firstChild);
-    }
+      @include('footer')
+    </div>
 
-    // Function to get appropriate image URL based on type
-    function getImageUrlForType(type) {
-      switch (type) {
-        case 'candidate':
-          return '{{ asset("assets/dist/img/user1-128x128.jpg") }}';
-        case 'election':
-          return '{{ asset("assets/dist/img/user8-128x128.jpg") }}';
-        default:
-          return '{{ asset("assets/dist/img/user3-128x128.jpg") }}';
-      }
-    }
+    <script>
+        // Simulate a function that triggers a new message notification
+        function notifyNewEvent(type, name) {
+          // Increment badge count
+          let badge = document.getElementById('notification-badge');
+          let currentCount = parseInt(badge.innerText) || 0;
+          badge.innerText = currentCount + 1;
 
-    // Example usage: Call notifyNewEvent('candidate', 'John Doe') or notifyNewEvent('election', '2024 Election')
-    // This would add a new message to the dropdown with the appropriate details.
-  </script>
+          // Create new message item
+          let messagesDiv = document.getElementById('notification-messages');
+          let newItem = document.createElement('a');
+          newItem.classList.add('dropdown-item');
+
+          // Message content
+          newItem.innerHTML = `
+            <div class="media">
+              <img src="${getImageUrlForType(type)}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  ${name}
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">${type === 'candidate' ? 'New candidate created' : 'New election created'}</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> Just now</p>
+              </div>
+            </div>
+          `;
+
+          messagesDiv.insertBefore(newItem, messagesDiv.firstChild);
+        }
+
+        // Function to get appropriate image URL based on type
+        function getImageUrlForType(type) {
+          switch (type) {
+            case 'candidate':
+              return '{{ asset("assets/dist/img/user1-128x128.jpg") }}';
+            case 'election':
+              return '{{ asset("assets/dist/img/user8-128x128.jpg") }}';
+            default:
+              return '{{ asset("assets/dist/img/user3-128x128.jpg") }}';
+          }
+        }
+
+        // Example usage: Call notifyNewEvent('candidate', 'John Doe') or notifyNewEvent('election', '2024 Election')
+        // This would add a new message to the dropdown with the appropriate details.
+      </script>

@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
+
 // Lock screen routes
 Route::get('lock_screen', [App\Http\Controllers\Auth\LockScreen::class, 'lockScreen'])->name('lock_screen');
 Route::post('unlock', [App\Http\Controllers\Auth\LockScreen::class, 'unlock'])->name('unlock');
@@ -58,20 +62,23 @@ Route::post('/contact', [ContactUsController::class, 'submit'])->name('contact.s
 
 //election routes
 Route::resource('elections', ElectionController::class);
-// Route::post('/submit-vote', [ElectionController::class, 'submitVote'])->name('submitVote');
 
 
-// Route::get('elections/{election}', [ElectionController::class, 'showCandidates'])->name('elections.showCandidates');
 
 
 // Profile routes
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
-    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//     Route::post('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
+//     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
+// });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 // Include authentication routes
 require __DIR__.'/auth.php';

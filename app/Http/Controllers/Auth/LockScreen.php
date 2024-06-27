@@ -40,7 +40,7 @@ class LockScreen extends Controller
             return redirect()->route('lock_screen');
         }
         session(['lock-expires-at'=>now()->addMinutes($request->user()->getLockoutTime())]);
-        return redirect('Dashboard');
+        return redirect('dashboard');
     }
 
-}    
+}

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Elections</title>
-    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
+    <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -29,13 +31,8 @@
     </style>
 </head>
 <body>
-
-<header class="bg-dark py-3">
-    <div class="container">
-        <a href="#" class="navbar-brand text-white">Manage Elections</a>
-    </div>
-</header>
-
+    @include('navbar')
+    @include('sidebar')
 <main>
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
@@ -47,18 +44,30 @@
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="elections-container">
-                <!-- Election cards will be dynamically added here -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="row row-cols-6 row-cols-sm-2 row-cols-md-3 g-3" id="elections-container">
+                  <!-- Election cards will be dynamically added here -->
+                </div>
             </div>
         </div>
     </div>
 </main>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+
 
 <!-- Modal for adding election -->
 <div class="modal fade" id="addElectionModal" tabindex="-1" aria-labelledby="addElectionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addElectionModalLabel">Add New Election</h5>
@@ -92,6 +101,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Modal for viewing election -->
 <div class="modal fade" id="viewElectionModal" tabindex="-1" aria-labelledby="viewElectionModalLabel" aria-hidden="true">
@@ -171,8 +181,11 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+<!-- Bootstrap 5 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const elections = [];
@@ -278,6 +291,6 @@
         renderElections();
     });
 </script>
-
+@include('footer')
 </body>
 </html>

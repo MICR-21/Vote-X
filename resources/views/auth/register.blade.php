@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f3f4f6;
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,30 +16,31 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
-            padding: 20px;
+            padding: 2rem;
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: auto;
         }
 
         .signin h2 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             text-align: center;
-            color: #333;
+            color: #4f46e5;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
             display: block;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
             color: #333;
         }
 
@@ -47,11 +48,12 @@
         .form-group input[type="email"],
         .form-group input[type="password"] {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
             box-sizing: border-box;
+            transition: border-color 0.3s;
         }
 
         .form-group input[type="text"]:focus,
@@ -59,18 +61,20 @@
         .form-group input[type="password"]:focus {
             border-color: #4f46e5;
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+            outline: none;
         }
 
         .error-message {
             color: red;
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
         }
 
         .submit-button {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 1rem;
         }
 
         .submit-button button {
@@ -78,10 +82,11 @@
             color: #fff;
             border: none;
             border-radius: 8px;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s;
+            width: 48%;
         }
 
         .submit-button button:hover {
@@ -91,7 +96,9 @@
         .submit-button a {
             color: #4f46e5;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 0.875rem;
+            text-align: center;
+            width: 48%;
         }
 
         .submit-button a:hover {
