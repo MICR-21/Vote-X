@@ -65,20 +65,12 @@ Route::resource('elections', ElectionController::class);
 
 
 
-
-// Profile routes
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//     Route::post('/profile/update-picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.update.picture');
-//     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
-// });
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
 });
 // Include authentication routes
 require __DIR__.'/auth.php';
