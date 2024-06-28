@@ -9,17 +9,16 @@
         </p>
         <style>
             .input-label {
-            color: black; /* Set the text color to black or any other visible color */
-        }
+                color: black; /* Set the text color to black or any other visible color */
+            }
         </style>
-
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -31,8 +30,7 @@
 
         <div>
             <x-input-label for="email"  :value="__('Email')" class="input-label" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username"
-                style="width: 400%" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" style="width: 400%" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -53,6 +51,16 @@
                 </div>
             @endif
         </div>
+
+        <div>
+            <x-input-label for="profile_image" :value="__('Profile Image')" class="input-label" />
+            <input id="profile_image" name="profile_image" type="file" class="mt-1 block w-full text-gray-700 dark:text-gray-300" style="width: 400%;" accept="image/*" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
+            @if ($user->profile_photo_path)
+                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="mt-2 h-20 w-20 rounded-full">
+            @endif
+        </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

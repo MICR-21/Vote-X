@@ -6,6 +6,7 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(to right, #e0f7fa, #e1bee7);
+
         }
 
         .login-box {

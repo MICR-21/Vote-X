@@ -22,8 +22,8 @@
         }
 
         body {
-            background-color: wheat;
-            color: #fff;
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
+            color: #black;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -63,6 +63,7 @@
             background-color: #0c0;
             color: #fff;
         }
+
     </style>
     </head>
     <body class="antialiased">
