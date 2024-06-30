@@ -31,12 +31,10 @@ class LockScreen extends Controller
             // echo "Fail, your password does not match", "Error";
             return redirect()->route('lock_screen');
         }
-        else{
-            User::where ('id', $request->user()->id)->update(['isLocked' => 0]);
-            // $user->save();
-            Auth::login($user);
-            return redirect()->route('dashboard');
-
-            }
+        session(['lock-expires-at'=>now()->addMinutes($request->user()->getLockoutTime())]);
+        return redirect('dashboard');
     }
+
+}
+
 }

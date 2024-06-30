@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,7 +9,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">   
+        <link rel="preconnect" href="https://fonts.bunny.net">
 
         <style> @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
@@ -21,7 +22,7 @@
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
 }
-body 
+body
 {
   display: flex;
   justify-content: center;
@@ -29,7 +30,7 @@ body
   min-height: 100vh;
   background: #000;
 }
-section 
+section
 {
   position: absolute;
   width: 100vw;
@@ -41,7 +42,7 @@ section
   flex-wrap: wrap;
   overflow: hidden;
 }
-section::before 
+section::before
 {
   content: '';
   position: absolute;
@@ -50,7 +51,7 @@ section::before
   background: linear-gradient(#000,#0f0,#000);
   animation: animate 5s linear infinite;
 }
-@keyframes animate 
+@keyframes animate
 {
   0%
   {
@@ -61,7 +62,7 @@ section::before
     transform: translateY(100%);
   }
 }
-section span 
+section span
 {
   position: relative;
   display: block;
@@ -71,7 +72,7 @@ section span
   z-index: 2;
   transition: 1.5s;
 }
-section span:hover 
+section span:hover
 {
   background: #0f0;
   transition: 0s;
@@ -81,7 +82,7 @@ section .signin
 {
   position: absolute;
   width: 400px;
-  background: #222;  
+  background: #222;
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -90,7 +91,7 @@ section .signin
   border-radius: 4px;
   box-shadow: 0 15px 35px rgba(0,0,0,9);
 }
-section .signin .content 
+section .signin .content
 {
   position: relative;
   width: 100%;
@@ -103,7 +104,7 @@ section .signin .content
   color: #0f0;
   text-transform: uppercase;
 }
-section .signin .contenti 
+section .signin .contenti
 {
   position: relative;
   width: 100%;
@@ -117,26 +118,26 @@ section .signin .contenti
   text-transform: uppercase;
 }
 
-section .signin .content h2 
+section .signin .content h2
 {
   font-size: 2em;
   color: #0f0;
   text-transform: uppercase;
 }
-section .signin .contenti h2 
+section .signin .contenti h2
 {
   font-size: 2em;
   color: #0f0;
   text-transform: uppercase;
 }
-section .signin .content .form 
+section .signin .content .form
 {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 45px;
 }
-section .signin .contenti .form 
+section .signin .contenti .form
 {
   width: 100%;
   display: flex;
@@ -190,9 +191,9 @@ section .signin .content .form .already
   gap: 30px;
   font-size: 0.9em;
   color: #0f0;
-  
+
 }
-section .signin .content .form .inputBox .input 
+section .signin .content .form .inputBox .input
 {
   position: relative;
   width: 100%;
@@ -205,7 +206,7 @@ section .signin .content .form .inputBox .input
   font-weight: 500;
   font-size: 1em;
 }
-section .signin .content .form .inputBox i 
+section .signin .content .form .inputBox i
 {
   position: absolute;
   left: 0;
@@ -222,14 +223,14 @@ section .signin .content .form .inputBox i
   font-size: 0.8em;
   color: #fff;
 }
-.signin .content .form .links 
+.signin .content .form .links
 {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.signin .contenti .form .links 
+.signin .contenti .form .links
 {
   position: relative;
   width: 100%;
@@ -262,7 +263,7 @@ input[type="submit"]:active
 }
 @media (max-width: 900px)
 {
-  section span 
+  section span
   {
     width: calc(10vw - 2px);
     height: calc(10vw - 2px);
@@ -270,13 +271,13 @@ input[type="submit"]:active
 }
 @media (max-width: 600px)
 {
-  section span 
+  section span
   {
     width: calc(20vw - 2px);
     height: calc(20vw - 2px);
   }
 
-} 
+}
 .text-xs-white {
     font-size: 0.9rem; /* 8px */
     color: white;
@@ -285,16 +286,16 @@ input[type="submit"]:active
 
 
 </style>
-       
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body >
-        <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+        <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
 
                 {{ $slot }}
-        
-    
+
+
         </section>
     </body>
 </html>

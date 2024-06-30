@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -107,12 +108,7 @@ section span:hover
   padding: 45px;
   text-align: center;
   font-size: 16px;
-  color: white;
 
-.input
-{
-    color: black;
-}
 
 }
 .form input {

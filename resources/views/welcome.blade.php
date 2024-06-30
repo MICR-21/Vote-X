@@ -22,8 +22,8 @@
         }
 
         body {
-            background-color: #000;
-            color: #fff;
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
+            color: #black;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -32,25 +32,6 @@
             text-align: center;
         }
 
-        .navbar {
-            width: 100%;
-            background-color: #2c3e50;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-        }
-
-        .navbar a:hover {
-            background-color: #34495e;
-        }
 
         .header {
             margin-top: 60px;
@@ -82,16 +63,17 @@
             background-color: #0c0;
             color: #fff;
         }
+
     </style>
     </head>
-    <img src="profile/logo.png" alt="Logo" class="logo">
+    <body class="antialiased">
+        <img src="C:\xampp\htdocs\Vote-X\resources\views\logo.png" alt="Logo" class="logo">
     <div class="header">
         WELCOME TO VOTE-X
     </div>
     <div class="description">
         Secure and Reliable E-Voting Platform
     </div>
-    <body class="antialiased">
         <div class=buttons>
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
@@ -106,4 +88,4 @@
                 </div>
             @endif
 
-        
+

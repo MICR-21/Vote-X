@@ -12,7 +12,10 @@
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <!-- Error Message -->
+            {{-- message --}}
+            {!! Toastr::message() !!}
+            <h1 class="auth-title">Lock Screen.</h1>
+            <p class="auth-subtitle mb-5">Lock screen system management</p>
             @if(session()->has('error'))
                 <div class="text-danger text-center text-bold">
                     {{ session()->get('error') }}
@@ -32,9 +35,18 @@
                             <x-text-input id="password" class="block mt-6 w-full" type="password" name="password" required autocomplete="current-password" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
-                        <x-primary-button class="ms-3">
-                            {{ __('Unlock Screen') }}
-                        </x-primary-button>
+
+                        <div class="flex items-center justify-end mt-4">
+                            @if (Route::has('password.request'))
+                                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            @endif
+
+                            <x-primary-button class="ms-3">
+                                {{ __('Unlock Screen') }}
+                            </x-primary-button>
+                        </div>
                     </div>
                 </section>
             </form>
@@ -49,45 +61,7 @@
                 </form>
         </div>
     </div>
-    <script>
-        // This flag indicates if the lock screen is active
-        let isLockActive = true;
 
-        // Function to redirect to the lock screen
-        function redirectToLockScreen() {
-            if (isLockActive) {
-                window.location.replace("{{ route('lock_screen') }}");
-            }
-        }
-
-        // Event listener for the back button
-        window.addEventListener('popstate', function () {
-            redirectToLockScreen();
-        });
-
-        // Event listener for hash changes (e.g., URL changes without reloading the page)
-        window.addEventListener('hashchange', function () {
-            redirectToLockScreen();
-        });
-
-        // Event listener for beforeunload (e.g., when the user tries to leave the page)
-        window.addEventListener('beforeunload', function (event) {
-            if (isLockActive) {
-                event.preventDefault();
-                event.returnValue = ''; // Some browsers require returnValue to be set
-            }
-        });
-
-        // Function to deactivate the lock screen (call this on successful unlock)
-        function unlockScreen() {
-            isLockActive = false;
-        }
-
-        // Check if the unlock form is submitted successfully
-        document.querySelector('form').addEventListener('submit', function () {
-            unlockScreen();
-        });
-    </script>
 </body>
 
 </html>
