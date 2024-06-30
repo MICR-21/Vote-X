@@ -37,4 +37,3 @@ class LockScreen extends Controller
 
 }
 
-}
