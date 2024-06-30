@@ -22,9 +22,6 @@
                 </div>
             @endif
 
-            <h1 class="auth-title">Lock Screen.</h1>
-            <p class="auth-subtitle mb-5">Lock screen system management</p>
-
             <form method="POST" action="{{ route('unlock') }}">
                 @csrf
                 <section>

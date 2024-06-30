@@ -123,13 +123,6 @@
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <div class="login-social">
-                <button>
-                    <img src="https://www.google.com/favicon.ico" alt="Google Icon" width="20" height="20">
-                    {{ __('Log in with Google') }}
-                </button>
-            </div>
-
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 

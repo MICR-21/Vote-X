@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\HomeController;
@@ -5,7 +6,6 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\LockScreen;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 

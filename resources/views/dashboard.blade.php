@@ -24,7 +24,6 @@
 <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#712cf9">
 
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -177,35 +176,42 @@
 </svg>
 
 <main class="container">
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://example.com/image1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://example.com/image2.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://example.com/image3.jpg" alt="Third slide">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+        .carousel-item img, img {
+          width: 100%;
+          height: 500px; /* Set a specific height */
+          object-fit: cover; /* Make sure the image covers the area */
+        }
+      </style>
+    </head>
+    <body>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="https://images.unsplash.com/photo-1569163139394-de4e5f43e5ca?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://plus.unsplash.com/premium_photo-1681841994787-65f08038d281?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://images.unsplash.com/photo-1535000367458-13b83fad46f7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="Third slide">
+          </div>
         </div>
-    </div>
-
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
 
 
     <div class="row">
@@ -235,7 +241,67 @@
         </div>
     </div>
 
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Upcoming Elections</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Presidential Election</h5>
+                            <p class="card-text">Date: November 3, 2024</p>
+                            <p class="card-text">Description: The election for the next President of Strathmore University.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Senate Election</h5>
+                            <p class="card-text">Date: November 3, 2024</p>
+                            <p class="card-text">Description: The election for the next members of the Senate.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Local Election</h5>
+                            <p class="card-text">Date: November 3, 2024</p>
+                            <p class="card-text">Description: The election for local student officials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Voting Status</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p>You are currently <span class="text-success">registered</span> to vote.</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50% complete</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Important Dates</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p>Registration Deadline: October 1, 2024</p>
+                    <p>Early Voting Begins: October 15, 2024</p>
+                    <p>Election Day: November 3, 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -298,7 +364,7 @@
         <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
       </article>
 
-      {{-- <article class="blog-post">
+      <article class="blog-post">
         <h2 class="display-5 link-body-emphasis mb-1">Another blog post</h2>
         <p class="blog-post-meta">December 23, 2020 by <a href="#">Jacob</a></p>
 
@@ -310,9 +376,9 @@
         <h3>Example table</h3>
         <p>And don't forget about tables in these posts:</p>
         <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-      </article> --}}
+      </article>
 
-      {{-- <article class="blog-post">
+      <article class="blog-post">
         <h2 class="display-5 link-body-emphasis mb-1">New feature</h2>
         <p class="blog-post-meta">December 14, 2020 by <a href="#">Chris</a></p>
 
@@ -323,7 +389,7 @@
           <li>Third list item to close it out</li>
         </ul>
         <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout.</p>
-      </article> --}}
+      </article>
 
       <nav class="blog-pagination" aria-label="Pagination">
         <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
@@ -357,9 +423,7 @@
             <ul class="list-unstyled">
                 <li>
                     <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                        <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#777"/>
-                        </svg>
+                        <img src="path/to/your/image1.jpg" width="100%" height="96" alt="Launch of Blockchain Voting System">
                         <div class="col-lg-8">
                             <h6 class="mb-0">Launch of Blockchain Voting System</h6>
                             <small class="text-body-secondary">{{ \Carbon\Carbon::now()->subDays(1)->format('F d, Y') }}</small>
@@ -369,9 +433,7 @@
                 </li>
                 <li>
                     <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                        <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#777"/>
-                        </svg>
+                        <img src="path/to/your/image2.jpg" width="100%" height="96" alt="Upcoming Election Dates">
                         <div class="col-lg-8">
                             <h6 class="mb-0">Upcoming Election Dates</h6>
                             <small class="text-body-secondary">{{ \Carbon\Carbon::now()->subDays(2)->format('F d, Y') }}</small>
@@ -381,9 +443,7 @@
                 </li>
                 <li>
                     <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                        <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <rect width="100%" height="100%" fill="#777"/>
-                        </svg>
+                        <img src="path/to/your/image3.jpg" width="100%" height="96" alt="Enhanced Security Measures">
                         <div class="col-lg-8">
                             <h6 class="mb-0">Enhanced Security Measures</h6>
                             <small class="text-body-secondary">{{ \Carbon\Carbon::now()->subDays(3)->format('F d, Y') }}</small>
@@ -393,6 +453,8 @@
                 </li>
             </ul>
         </div>
+
+
       </div>
     </div>
   </div>
@@ -400,13 +462,20 @@
 </main>
 
 <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-  <p>Blog template built for <a href="">Bootstrap</a> by <a href="">@mdo</a>.</p>
+  <p>Blog template built for <a href="">Vote-X</a> by <a href=""></a>.</p>
   <p class="mb-0">
     <a href="#">Back to top</a>
   </p>
 </footer>
 <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
 </x-app-layout>
+
+
+
+
+
+
