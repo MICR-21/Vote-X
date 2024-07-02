@@ -194,13 +194,19 @@
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="https://images.unsplash.com/photo-1569163139394-de4e5f43e5ca?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="First slide">
+            <img class="d-block w-100" src="https://plus.unsplash.com/premium_photo-1663090686054-f46750c77799?
+            w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZWxlY3Rpb25zfGVufDB
+            8fDB8fHww" alt="First slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="https://plus.unsplash.com/premium_photo-1681841994787-65f08038d281?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="Second slide">
+            <img class="d-block w-100" src="https://plus.unsplash.com/premium_photo-1705317796232-4385169052a8?
+            w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGVsZWN0aW9uc3xlbnw
+            wfHwwfHx8MA%3D%3D" alt="Second slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="https://images.unsplash.com/photo-1535000367458-13b83fad46f7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRlbW9jcmFjeXxlbnwwfHwwfHx8MA%3D%3D" alt="Third slide">
+            <img class="d-block w-100" src="https://plus.unsplash.com/premium_photo-1708022614998-a0d2083a58d8?
+            w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fGVsZWN0aW9uc3xlbnw
+            wfHwwfHx8MA%3D%3D" alt="Third slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
@@ -433,7 +439,7 @@
                 </li>
                 <li>
                     <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                        <img src="path/to/your/image2.jpg" width="100%" height="96" alt="Upcoming Election Dates">
+                        <img src="#" width="100%" height="96" alt="Upcoming Election Dates">
                         <div class="col-lg-8">
                             <h6 class="mb-0">Upcoming Election Dates</h6>
                             <small class="text-body-secondary">{{ \Carbon\Carbon::now()->subDays(2)->format('F d, Y') }}</small>

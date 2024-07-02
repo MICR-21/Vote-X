@@ -8,6 +8,11 @@ Vote-x is a web-based e-voting system that uses blockchain technology, which off
 
 - Email Verification: Email verification is implemented to prevent fraudulent registrations.
 
+- Candidate Registration: Candidates were added and displayed for voters to see.
+
+- Adding Election Module: Election was created with a timed duration and expires after a certain time.
+-  
+
 ## Technologies Incorporated
 
 - Laravel: Backend framework for building the application.

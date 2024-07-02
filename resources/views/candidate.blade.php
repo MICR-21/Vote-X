@@ -6,7 +6,7 @@
     <title>Candidates Management</title>
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset("assets/plugins/fontawesome-free/css/all.min.css") }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
     <style>
         body {
@@ -57,7 +57,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Control Sidebar -->
@@ -191,36 +190,61 @@
         </div>
     </div>
 
-    <!-- Modal for deleting candidate -->
-    <div class="modal fade" id="deleteCandidateModal" tabindex="-1" aria-labelledby="deleteCandidateModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteCandidateModalLabel">Delete Candidate</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete <strong id="delete-candidate-name"></strong>?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteCandidateBtn">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @include('footer')
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
+        // Sample data
+        const candidates = [
+            {
+                id: 1,
+                name: 'John Doe',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                party: 'Party A',
+                image_url: 'https://via.placeholder.com/150'
+            },
+            {
+                id: 2,
+                name: 'Jane Smith',
+                description: 'Pellentesque ac bibendum tortor. Integer pharetra mi nec elit fermentum.',
+                party: 'Party B',
+                image_url: 'https://via.placeholder.com/150'
+            }
+        ];
+
+        // Function to render candidates
+        function renderCandidates() {
+            const container = $('#candidates-container');
+            container.empty();
+
+            candidates.forEach(candidate => {
+                const card = `
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="${candidate.image_url}" class="card-img-top" width="100%" height="225" alt="Candidate Image">
+                            <div class="card-body">
+                                <h5 class="card-title">${candidate.name}</h5>
+                                <p class="card-text">${candidate.description}</p>
+                                <p class="card-text"><small class="text-muted">${candidate.party}</small></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary btn-sm view-candidate" data-id="${candidate.id}">View</button>
+                                    <button class="btn btn-secondary btn-sm edit-candidate" data-id="${candidate.id}">Edit</button>
+                                    <button class="btn btn-danger btn-sm delete-candidate" data-id="${candidate.id}">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(card);
+            });
+        }
+
         $(document).ready(function() {
-            // Toggle image input based on selected radio button
+            renderCandidates();
+
+            // Toggle image input fields based on selection
             $('input[name="imageSource"]').change(function() {
-                if ($('#addImageFileRadio').is(':checked')) {
+                if (this.value === 'file') {
                     $('#addImageFileInput').show();
                     $('#addImageURLInput').hide();
                 } else {
@@ -230,7 +254,7 @@
             });
 
             $('input[name="editImageSource"]').change(function() {
-                if ($('#editImageFileRadio').is(':checked')) {
+                if (this.value === 'file') {
                     $('#editImageFileInput').show();
                     $('#editImageURLInput').hide();
                 } else {
@@ -239,180 +263,95 @@
                 }
             });
 
-            // Handle form submissions, candidate editing, deletion, etc.
-            $('#add-candidate-form').on('submit', function(event) {
+            // Add candidate form submission
+            $('#add-candidate-form').submit(function(event) {
                 event.preventDefault();
-                // Add candidate logic here
-                $('#add-candidate-form').on('submit', function(event) {
-        event.preventDefault();
+                const formData = new FormData(this);
 
-        const formData = new FormData(this);
-        const imageSource = $('input[name="imageSource"]:checked').val();
+                let newCandidate = {
+                    id: candidates.length + 1,
+                    name: formData.get('name'),
+                    description: formData.get('description'),
+                    party: formData.get('party')
+                };
 
-        if (imageSource === 'url') {
-            formData.delete('image_file');
-        } else {
-            formData.delete('image_url');
-        }
-
-        $.ajax({
-            url: '/api/candidates', // Replace with your API endpoint
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                $('#addCandidateModal').modal('hide');
-                // Add candidate card dynamically
-                addCandidateCard(response.id, response.name, response.description, response.party, response.image_url);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error adding candidate:', error);
-            }
-        });
-    });
-
-            });
-
-            $('#edit-candidate-form').on('submit', function(event) {
-                event.preventDefault();
-                // Edit candidate logic here
-                const candidateId = $('#edit-candidate-id').val();
-        const formData = new FormData(this);
-        const imageSource = $('input[name="editImageSource"]:checked').val();
-
-        if (imageSource === 'url') {
-            formData.delete('image_file');
-        } else {
-            formData.delete('image_url');
-        }
-
-        $.ajax({
-            url: `/api/candidates/${candidateId}`, // Replace with your API endpoint
-            type: 'PUT',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                $('#editCandidateModal').modal('hide');
-                // Update the candidate card dynamically
-                updateCandidateCard(response.id, response.name, response.description, response.party, response.image_url);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error editing candidate:', error);
-            }
-        });
-    });
-
-
-            });
-
-            $('#confirmDeleteCandidateBtn').on('click', function() {
-                // Delete candidate logic here
-                const candidateId = $(this).data('candidate-id');
-
-        $.ajax({
-            url: `/api/candidates/${candidateId}`, // Replace with your API endpoint
-            type: 'DELETE',
-            success: function(response) {
-                $('#deleteCandidateModal').modal('hide');
-                // Remove the candidate card dynamically
-                removeCandidateCard(candidateId);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error deleting candidate:', error);
-            }
-        });
-            });
-
-            // Example function to add a candidate card to the container (replace this with actual logic)
-            function addCandidateCard(id, name, description, party, imageUrl) {
-                const cardHtml = `
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="${imageUrl}" class="bd-placeholder-img card-img-top" width="100%" height="225" alt="${name}">
-                            <div class="card-body">
-                                <h5 class="card-title">${name}</h5>
-                                <p class="card-text">${description}</p>
-                                <p class="card-text"><small class="text-muted">Party: ${party}</small></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#viewCandidateModal" onclick="viewCandidate(${id})">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editCandidateModal" onclick="editCandidate(${id})">Edit</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteCandidateModal" onclick="deleteCandidate(${id})">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                $('#candidates-container').append(cardHtml);
-            }
-            //Example function to view candidate details (replace this with actual logic)
-            function viewCandidate(id) {
-                    // Logic to fetch and display candidate details
+                if (formData.get('imageSource') === 'file') {
+                    // Handle file upload (this is a simulation, actual file upload handling needed)
+                    const file = formData.get('image_file');
+                    newCandidate.image_url = URL.createObjectURL(file);
+                } else {
+                    newCandidate.image_url = formData.get('image_url');
                 }
 
-// Example function to edit candidate details (replace this with actual logic)
-function editCandidate(id) {
-    // Logic to fetch and fill candidate details in the edit form
-    $.ajax({
-        url: `/api/candidates/${id}`, // Replace with your API endpoint
-        type: 'GET',
-        success: function(response) {
-            $('#edit-candidate-id').val(response.id);
-            $('#edit-candidateName').val(response.name);
-            $('#edit-candidateDescription').val(response.description);
-            $('#edit-candidateParty').val(response.party);
-            if (response.image_url) {
-                $('#editImageURLRadio').prop('checked', true).trigger('change');
-                $('#edit-candidateImageURL').val(response.image_url);
-            } else {
-                $('#editImageFileRadio').prop('checked', true).trigger('change');
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching candidate details:', error);
-        }
-    });
-}
+                candidates.push(newCandidate);
+                renderCandidates();
+                $('#addCandidateModal').modal('hide');
+            });
 
-// Example function to delete candidate (replace this with actual logic)
-function deleteCandidate(id) {
-    $('#confirmDeleteCandidateBtn').data('candidate-id', id);
-    // Logic to handle candidate deletion confirmation
-    const candidateName = document.getElementById('delete-candidate-id').value;
-        const candidateCards = document.querySelectorAll('#candidates-container .card');
-        candidateCards.forEach(card => {
-            if (card.querySelector('.card-title').textContent === candidateName) {
-                card.closest('.col').remove();
-            }
+            // View candidate
+            $(document).on('click', '.view-candidate', function() {
+                const candidateId = $(this).data('id');
+                const candidate = candidates.find(c => c.id === candidateId);
+
+                $('#view-candidate-image').attr('src', candidate.image_url);
+                $('#view-candidate-name').text(candidate.name);
+                $('#view-candidate-description').text(candidate.description);
+                $('#view-candidate-party').text(candidate.party);
+
+                $('#viewCandidateModal').modal('show');
+            });
+
+            // Edit candidate
+            $(document).on('click', '.edit-candidate', function() {
+                const candidateId = $(this).data('id');
+                const candidate = candidates.find(c => c.id === candidateId);
+
+                $('#edit-candidate-id').val(candidate.id);
+                $('#edit-candidateName').val(candidate.name);
+                $('#edit-candidateDescription').val(candidate.description);
+                $('#edit-candidateParty').val(candidate.party);
+
+                $('#editImageFileRadio').prop('checked', true);
+                $('#editImageFileInput').show();
+                $('#editImageURLInput').hide();
+
+                $('#editCandidateModal').modal('show');
+            });
+
+            // Edit candidate form submission
+            $('#edit-candidate-form').submit(function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                const candidateId = parseInt($('#edit-candidate-id').val());
+
+                const candidateIndex = candidates.findIndex(c => c.id === candidateId);
+                candidates[candidateIndex].name = formData.get('name');
+                candidates[candidateIndex].description = formData.get('description');
+                candidates[candidateIndex].party = formData.get('party');
+
+                if (formData.get('editImageSource') === 'file') {
+                    // Handle file upload (this is a simulation, actual file upload handling needed)
+                    const file = formData.get('image_file');
+                    candidates[candidateIndex].image_url = URL.createObjectURL(file);
+                } else {
+                    candidates[candidateIndex].image_url = formData.get('image_url');
+                }
+
+                renderCandidates();
+                $('#editCandidateModal').modal('hide');
+            });
+
+            // Delete candidate
+            $(document).on('click', '.delete-candidate', function() {
+                const candidateId = $(this).data('id');
+                const candidateIndex = candidates.findIndex(c => c.id === candidateId);
+
+                if (candidateIndex !== -1) {
+                    candidates.splice(candidateIndex, 1);
+                    renderCandidates();
+                }
+            });
         });
-
-        const deleteCandidateModal = new bootstrap.Modal(document.getElementById('deleteCandidateModal'));
-        deleteCandidateModal.hide();
-    }
-}
-
-// Example function to update a candidate card (replace this with actual logic)
-function updateCandidateCard(id, name, description, party, imageUrl) {
-    const card = $(`#candidate-card-${id}`);
-    card.find('.card-title').text(name);
-    card.find('.card-text').first().text(description);
-    card.find('.card-text small').text(`Party: ${party}`);
-    card.find('.card-img-top').attr('src', imageUrl);
-}
-
-// Example function to remove a candidate card (replace this with actual logic)
-function removeCandidateCard(id) {
-    $(`#candidate-card-${id}`).remove();
-}
-
-
-            // Mock data for demonstration (replace this with actual logic)
-            addCandidateCard(1, 'John Doe', 'A candidate description.', 'Party A', 'https://via.placeholder.com/150');
-            addCandidateCard(2, 'Jane Smith', 'Another candidate description.', 'Party B', 'https://via.placeholder.com/150');
-
     </script>
 </body>
 </html>

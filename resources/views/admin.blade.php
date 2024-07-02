@@ -232,4 +232,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         // Example usage: Call notifyNewEvent('candidate', 'John Doe') or notifyNewEvent('election', '2024 Election')
         // This would add a new message to the dropdown with the appropriate details.
-      </script>
+
+    </script>

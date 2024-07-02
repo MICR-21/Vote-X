@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Contact Us</title>
+
+    <!-- Styles -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f3f4f6;
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
             margin: 0;
             padding: 0;
             display: flex;
@@ -40,7 +44,7 @@
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #333;
+            color: #4f46e5;
         }
 
         .form-group input[type="text"],
@@ -94,7 +98,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="contact-us">
@@ -132,7 +135,7 @@
                     </div>
 
                     <div class="submit-button">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit">
                             {{ __('Send Message') }}
                         </button>
                     </div>
