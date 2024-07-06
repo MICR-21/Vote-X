@@ -9,7 +9,7 @@
       <a href="{{ route('admins') }}" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('candidates') }}" class="nav-link">Manage Candidate</a>
+        <a href="{{ route('candidates.index') }}" class="nav-link">Manage Candidate</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="{{ route('elections.index') }}" class="nav-link">Manage Elections</a>
