@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +14,9 @@ class LockScreen
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()) {
-            return Auth::user()->isLocked == 0 ? redirect('lock-screen') : $next($request);
+
+        if (Auth::check() && Auth::user()->isLocked) {
+            return redirect()->route('lock_screen');
         }
         return $next($request);
     }

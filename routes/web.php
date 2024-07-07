@@ -1,45 +1,53 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\LockScreen;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Main welcome route
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Lock screen routes
+Route::get('lock_screen', [App\Http\Controllers\Auth\LockScreen::class, 'lockScreen'])->name('lock_screen');
+Route::post('unlock', [App\Http\Controllers\Auth\LockScreen::class, 'unlock'])->name('unlock');
+
 // Dashboard route
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified','locked.screen'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Group routes that require authentication
-Route::middleware('auth')->group(function () {
-    // Lock screen routes
-    Route::get('/lock-screen', function () {
-        return view('auth.lockscreen');
-    }) ->name('lock_screen');
+// Logout route
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::post('lock-screen', [LockScreen::class, 'lockScreen'])->name('lock_screen');
-    Route::post('unlock', [LockScreen::class, 'unlock'])->name('unlock');
+// Admin route
+Route::get('/admin', [HomeController::class, 'index'])->name('admins');
 
-    // Group routes that are protected by the lock screen middleware
-    Route::middleware('locked.screen')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
+// Candidate routes
+Route:: resource('candidates', CandidateController::class);
+
+
+// Contact Us routes
+Route::get('/contact', function () {
+    return view('contactUs');
+})->name('contact');
+
+Route::post('/contact', [ContactUsController::class, 'submit'])->name('contact.submit');
+
+// Election routes
+Route::resource('elections', ElectionController::class)->middleware('auth');
+
+// Profile routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Include authentication routes
 require __DIR__.'/auth.php';

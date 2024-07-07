@@ -10,17 +10,17 @@
     <div id="lockScreen">
         <div class="lock-container">
             <!-- Session Status -->
-            {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <!-- Error Message -->
+            {{-- message --}}
+            {!! Toastr::message() !!}
+            <h1 class="auth-title">Lock Screen.</h1>
+            <p class="auth-subtitle mb-5">Lock screen system management</p>
             @if(session()->has('error'))
                 <div class="text-danger text-center text-bold">
                     {{ session()->get('error') }}
                 </div>
             @endif
-
-            <h1 class="auth-title">Lock Screen.</h1>
-            <p class="auth-subtitle mb-5">Lock screen system management</p>
 
             <form method="POST" action="{{ route('unlock') }}">
                 @csrf
@@ -47,8 +47,18 @@
                     </div>
                 </section>
             </form>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                </a>
+                </form>
         </div>
     </div>
 
 </body>
+
 </html>

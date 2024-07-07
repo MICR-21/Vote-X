@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+        <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add this within the <head> section of your layout file -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>VOTE-X</title>
 
@@ -11,87 +13,78 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic');
+            @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+            @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic');
 
-        * {
+            * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Quicksand', sans-serif;
-        }
+            }
 
-        body {
-            background-color: #000;
-            color: #fff;
+            body {
+            background: linear-gradient(to right, #e0f7fa, #e1bee7);
+            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             text-align: center;
-        }
+            }
 
-        .navbar {
-            width: 100%;
-            background-color: #2c3e50;
-            padding: 10px 0;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
 
-        .navbar a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-        }
+           .header {
+           margin-top: 60px;
+               font-size: 4em;
+               font-weight: 600;
+           }
 
-        .navbar a:hover {
-            background-color: #34495e;
-        }
+           .description {
+               font-size: 1.5em;
+               margin: 20px 0;
+           }
 
-        .header {
-            margin-top: 60px;
-            font-size: 4em;
-            font-weight: 600;
-        }
+           .buttons {
+               margin-top: 30px;
+           }
 
-        .description {
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
+           .buttons a {
+               background-color: #0f0;
+               color: #000;
+               text-decoration: none;
+               padding: 15px 30px;
+               margin: 10px;
+               border-radius: 5px;
+               font-weight: 600;
+               transition: background-color 0.3s, color 0.3s;
+           }
 
-        .buttons {
-            margin-top: 30px;
-        }
+           .buttons a:hover {
+               background-color: #0c0;
+               color: #fff;
+           }
+           .logo {
+               width: 150px;
+               height: auto;
+               margin-bottom: 10px;
+                /* height: 150px; */
+                border-radius: 50%;
+                object-fit: cover;
+           }
 
-        .buttons a {
-            background-color: #0f0;
-            color: #000;
-            text-decoration: none;
-            padding: 15px 30px;
-            margin: 10px;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background-color 0.3s, color 0.3s;
-        }
 
-        .buttons a:hover {
-            background-color: #0c0;
-            color: #fff;
-        }
-    </style>
-    </head>
-    
-    <div class="header">
-        WELCOME TO VOTEX
-    </div>
-    <div class="description">
-        Secure and Reliable E-Voting Platform
-    </div>
+        </style>
+        </head>
     <body class="antialiased">
+        <img src="{{ asset('assets/dist/img/logo_img/logo.png') }}" alt="Logo" class="logo">
+        <div class="header">
+        WELCOME TO VOTE-X
+        </div>
+        <div class="description">
+            Secure and Reliable E-Voting Platform
+        </div>
         <div class=buttons>
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
@@ -105,5 +98,7 @@
                     @endauth
                 </div>
             @endif
+    </body>
+</html>
 
-        
+
