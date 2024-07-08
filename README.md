@@ -11,7 +11,10 @@ Vote-x is a web-based e-voting system that uses blockchain technology, which off
 - Candidate Registration: Candidates were added and displayed for voters to see.
 
 - Adding Election Module: Election was created with a timed duration and expires after a certain time.
--  
+
+- Voter Registration and Authentication: Voters are registered using MetaMask to ensure they do not vote multiple times.
+
+- Voting Module: Voters can vote for their respective candidates securely.
 
 ## Technologies Incorporated
 
@@ -19,6 +22,8 @@ Vote-x is a web-based e-voting system that uses blockchain technology, which off
 - Node.js: Used for handling real-time features.
 - Composer: Dependency manager for PHP.
 - NPM: Package manager for Node.js.
+- MetaMask: used to register voters and ensure that they do not vote multiple times.
+- Ganache: provided a development enviroment for testing and deploying the smart contract.
 
 ## Installation
 
@@ -29,6 +34,8 @@ Vote-x is a web-based e-voting system that uses blockchain technology, which off
 - Node.js
 - MySQL Workbench
 - Git
+- Metamask
+- Ganache
 
 ### STEPS
 
@@ -59,11 +66,36 @@ Run migrations to set up the database tables.
 
 Run migration code: php artisan migrate
 
-#### 7. Run the application
+#### 7. Installing MetaMask
+
+To install MetaMask on google Chrome, go to the chrome webstore and Click 'Add to Chrome' and follow the instructions to install the extension.
+
+To install on Brave, you only got to settings to enable it since it is already built into the Brave browser.
+
+To install it on Firefox, go to the firefox Add-ons Store and click ' Add to Firefox' and follow the instructions to install the extension.
+
+##### 7.1 Set Up MetaMask
+
+- Open the Meta Mask extension in your browser.
+- Click get started.
+- If you have an existing wallet, you can import it using your seed phrase. Otherwise, Create a new wallet by following the on-screen instructions.
+- Securely store your seed phrase as it is crucial for wallet recovery.
+
+
+#### 8. Intalling and Running Ganache
+
+To  install ganache you can download  the [Ganache website](https://archive.trufflesuite.com/ganache/): or
+
+run the following command to install it : npm install -g ganache-cli
+
+To run the ganache, run the command: ganache-cli
+or if your using the application open the GUI application.
+
+#### 8. Run the application
 
 Use code: php artisan serve
 
-#### 8. Run Node.js server
+#### 10. Run Node.js server
 
 use code: node server.js
 
