@@ -5,14 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SmartContractController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 //main route
 Route::get('/',[HomeController::class,'home']);
@@ -31,6 +29,9 @@ Route::get('/logout',[AuthController::class,'logout']);
 Route::get('/forgotpassword', [AuthController::class, 'forgotpassword']);
 Route::post('/forgotpassword', [AuthController::class, 'PostForgotPassword']);
 
+//smart contract
+Route::get('/candidates', [SmartContractController::class, 'getCandidates']);
+Route::post('/vote', [SmartContractController::class,'vote']);
 
 
 //create middleswares to protect routes and access
@@ -38,7 +39,7 @@ Route::post('/forgotpassword', [AuthController::class, 'PostForgotPassword']);
 //the new laravel11 middlewares are stores in bootstrap/app.php and not in the kernel
 
 Route::middleware([AdminMiddleware::class])->group(function(){
-    Route::get('admin/dashboard',[AuthController::class,'viewdashboard']);
+    Route::get('admin/dashboard',[AdminController::class,'dashboard']);
     //get list of admins
     Route::get('/admin/admin/add',function(){
         return view('admin.admin.add');
@@ -75,6 +76,10 @@ Route::middleware([AdminMiddleware::class])->group(function(){
     Route::post('admin/elections/update/{id}', [ElectionController::class, 'updateelection']);
     Route::get('admin/elections/delete/{id}', [ElectionController::class, 'deleteelection']);
 
+
+    Route::get('/dashboard', [ElectionController::class, 'dashboard'])->name('dashboard');
+
+
     //user routes
     Route::get('/admin/user/list',[UserController::class,'userlist']);
     Route::get('/admin/user/add',[UserController::class,'adduserroute']);
@@ -93,5 +98,7 @@ Route::middleware([UserMiddleware::class])->group(function(){
     Route::get('/user/voting/vote/{id}',[UserController::class, 'uservote']);
     Route::post('/user/voting/vote/{id}',[UserController::class, 'vote']);
     Route::get('admin/candidate/list/{election_id}', [UserController::class, 'electionCandidates'])->name('candidate.list');
+    Route::get('/confirm-vote/{candidateId}', [ElectionController::class, 'confirmVote'])->name('confirm.vote');
+    Route::post('/cast-vote', [ElectionController::class, 'castVote'])->name('cast.vote');
 
 });

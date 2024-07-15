@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,27 +10,28 @@ use Illuminate\Support\Facades\Request;
 class ElectionModel extends Model
 {
     use HasFactory;
+
     protected $table = 'elections';
 
+    protected $dates = ['start_date', 'end_date'];
 
-    static public function getElections()
+    public static function getElections()
     {
-        $return = self::select('elections.*')
-            ->where('is_delete', '=', 0);
+        $query = self::where('is_deleted', 0);
 
-                if (!empty(Request::get('name'))) {
-                    $return = $return->where('name', 'like', '%'.Request::get('name').'%');
-                }
+        if ($name = Request::get('name')) {
+            $query->where('name', 'like', "%{$name}%");
+        }
 
-                if (!empty(Request::get('start_date'))) {
-                    $return = $return->whereDate('start_date', '=', Request::get('date'));
-                }
-                if (!empty(Request::get('end_date'))) {
-                    $return = $return->whereDate('end_date', '=', Request::get('date'));
-                }
-        $return = $return->orderBy('id', 'desc')->paginate(9);
+        if ($startDate = Request::get('start_date')) {
+            $query->whereDate('start_date', $startDate);
+        }
 
-        return $return;
+        if ($endDate = Request::get('end_date')) {
+            $query->whereDate('end_date', $endDate);
+        }
+
+        return $query->orderBy('id', 'desc')->paginate(9);
     }
 
     public function isActive()
@@ -40,39 +40,23 @@ class ElectionModel extends Model
         return $this->start_date <= $now && $this->end_date >= $now;
     }
 
-    // You can also add a scope to easily query active elections
     public function scopeActive($query)
     {
         $now = Carbon::now();
         return $query->where('start_date', '<=', $now)
-                     ->where('end_date', '>=', $now);
-    }
-
-    static public function getCandidatesWithVoteCounts($electionId)
-    {
-        $return = self::select('candidates.*', DB::raw('COUNT(votes.id) as vote_count'))
-            ->join('candidates', 'elections.id', '=', 'candidates.election_id')
-            ->leftJoin('votes', 'candidates.id', '=', 'votes.candidate_id')
-            ->where('elections.id', '=', $electionId)
-            ->where('candidates.is_delete', '=', 0)
-            ->groupBy('candidates.id')
-            ->orderBy('vote_count', 'desc')
-            ->paginate(5);
-
-        return $return;
+                     ->where('end_date', '>=', $now)
+                     ->where('is_deleted', 0);
     }
 
     public function determineWinner()
     {
-        DB::beginTransaction();
-        try {
-            // Reset all candidates' is_winner status for this election
+        return DB::transaction(function () {
             CandidateModel::where('election', $this->id)->update(['is_winner' => false]);
 
             $winner = CandidateModel::select('candidates.*', DB::raw('COUNT(votes.id) as vote_count'))
                 ->leftJoin('votes', 'candidates.id', '=', 'votes.candidate_id')
-                ->where('candidates.election', '=', $this->id)
-                ->where('candidates.is_delete', '=', 0)
+                ->where('candidates.election', $this->id)
+                ->where('candidates.is_deleted', 0)
                 ->groupBy('candidates.id')
                 ->orderBy('vote_count', 'desc')
                 ->first();
@@ -82,31 +66,27 @@ class ElectionModel extends Model
                 $winner->save();
             }
 
-            DB::commit();
             return $winner;
-        } catch (\Exception $e) {
-            DB::rollback();
-            // Handle the error (log it, notify admin, etc.)
-            return null;
-        }
-    }
-    static public function getSingle($id){
-        return self::find($id);
+        });
     }
 
+    public static function getSingle($id)
+    {
+        return self::findOrFail($id);
+    }
 
     public function routeNotificationForAfricasTalking($notification)
     {
         return $this->phone;
     }
 
-    static public function getTokenSingle($remember_token)
+    public static function getTokenSingle($remember_token)
     {
-        return ElectionModel::where('remember_token', '=', $remember_token)->first();
+        return self::where('remember_token', $remember_token)->first();
     }
 
-    static public function getEmailSingle($email)
+    public static function getEmailSingle($email)
     {
-        return ElectionModel::where('email', '=', $email)->first();
+        return self::where('email', $email)->first();
     }
 }

@@ -1,188 +1,100 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content-wrapper">
-    @if(Auth::user()->user_type == 1)
-    <div class="row">
-        <!-- Summary Cards -->
-        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Elections</h5>
-                    <h3 class="mb-0">{{ $totalElections }}</h3>
-                </div>
-            </div>
-        </div>
-        @if(Auth::user()->user_type == 1)
+    <!-- Debug information -->
+    <div style="background-color: #db1e1e; padding: 10px; margin-bottom: 20px;">
+        <h3>Debug Information:</h3>
+        <p>Contract Address: {{ $contractAddress ?? 'Not set' }}</p>
+        <p>ABI: {{ isset($abi) && is_array($abi) ? 'Set (' . count($abi) . ' items)' : 'Not set or invalid' }}</p>
+    </div>
+    <div class="content-wrapper">
+        @if (Auth::check() && Auth::user()->user_type == 1)
             <div class="row">
-                <div class="col-12">
+                <!-- Summary Cards -->
+                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Debug Info</h5>
-                            <p>Current Server Time: {{ now() }}</p>
-                            <p>Active Elections Count: {{ $activeElections }}</p>
+                            <h5 class="card-title">Total Elections</h5>
+                            <h3 class="mb-0">{{ $totalElections ?? 'N/A' }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Candidates</h5>
+                            <h3 class="mb-0">{{ $totalCandidates ?? 'N/A' }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Votes</h5>
+                            <h3 class="mb-0" id="totalVotes">Loading...</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Winner</h5>
+                            <h3 class="mb-0" id="winner">
+                                @if (isset($winner) && $winner !== null)
+                                    {{ $winner['name'] }} (ID: {{ $winner['id'] }}) with {{ $winner['voteCount'] }} votes
+                                @else
+                                    No winner determined
+                                @endif
+                            </h3>
                         </div>
                     </div>
                 </div>
             </div>
         @endif
-        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Candidates</h5>
-                    <h3 class="mb-0">{{ $totalCandidates }}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Total Votes</h5>
-                    <h3 class="mb-0">{{ $totalVotes }}</h3>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <div class="row">
-        <!-- Election Status Pie Chart -->
-        <div class="col-xl-6 col-sm-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Election Status</h5>
-                    <canvas id="electionStatusChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Voter Turnout Line Chart -->
-        <div class="col-xl-6 col-sm-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Voter Turnout Over Time</h5>
-                    <canvas id="voterTurnoutChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Recent Elections Table with Winner -->
-        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recent Elections</h5>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Election Name</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Total Votes</th>
-                                    <th>Winner</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($recentElections as $election)
-                                <tr>
-                                    <td style="color:white;">{{ $election->name }}</td>
-                                    <td style="color:white;">{{ $election->start_date }}</td>
-                                    <td style="color:white;">{{ $election->end_date }}</td>
-                                    <td style="color:white;">{{ $election->total_votes }}</td>
-                                    <td style="color:white;">{{ $election->winner ? $election->winner->name : 'Not yet determined' }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Top Candidates Bar Chart -->
-        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Top Candidates (Across All Elections)</h5>
-                    <canvas id="topCandidatesChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-</div>
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Election Status Pie Chart
-    var ctxStatus = document.getElementById('electionStatusChart').getContext('2d');
-    new Chart(ctxStatus, {
-        type: 'pie',
-        data: {
-            labels: ['Active', 'Upcoming', 'Completed'],
-            datasets: [{
-                data: [{{ $activeElections }}, {{ $upcomingElections }}, {{ $completedElections }}],
-                backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                }
-            }
-        }
-    });
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
+    <script>
+        async function fetchElectionData() {
+            if (window.ethereum) {
+                window.web3 = new Web3(window.ethereum);
+                await window.ethereum.enable();
 
-    // Voter Turnout Line Chart
-    var ctxTurnout = document.getElementById('voterTurnoutChart').getContext('2d');
-    new Chart(ctxTurnout, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode($voterTurnoutData->pluck('date')) !!},
-            datasets: [{
-                label: 'Voter Turnout',
-                data: {!! json_encode($voterTurnoutData->pluck('turnout')) !!},
-                borderColor: '#4BC0C0',
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+                const contractAddress = '{{ $contractAddress ?? 'undefined' }}';
+                if (contractAddress === "undefined") {
+                    console.error("Contract address is not set");
+                    document.getElementById('errorMessage').innerText =
+                        "Error: Contract address is not set. Please check your configuration.";
+                    return;
                 }
-            }
-        }
-    });
 
-    // Top Candidates Bar Chart
-    var ctxCandidates = document.getElementById('topCandidatesChart').getContext('2d');
-    new Chart(ctxCandidates, {
-        type: 'bar',
-        data: {
-            labels: {!! json_encode($topCandidates->pluck('name')) !!},
-            datasets: [{
-                label: 'Total Votes',
-                data: {!! json_encode($topCandidates->pluck('total_votes')) !!},
-                backgroundColor: '#FF9F40'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
+                const abi = {!! !empty($abi) ? json_encode($abi) : '[]' !!};
+                if (abi.length === 0) {
+                    console.error("ABI is not set or empty");
+                    document.getElementById('errorMessage').innerText += " ABI is not set or empty.";
+                    return;
                 }
+
+                const contract = new web3.eth.Contract(abi, contractAddress);
+
+                // Add your logic here to interact with the contract and update the UI
+                // For example:
+                try {
+                    const totalVotes = await contract.methods.totalVotes().call();
+                    document.getElementById('totalVotes').innerText = totalVotes;
+
+                    const winner = await contract.methods.winner().call();
+                    document.getElementById('winner').innerText = `${winner.name} (ID: ${winner.id}) with ${winner.voteCount} votes`;
+                } catch (error) {
+                    console.error("Error fetching election data", error);
+                }
+            } else {
+                alert('Please install MetaMask to view election data.');
             }
         }
-    });
-</script>
+
+        window.onload = fetchElectionData;
+    </script>
 @endsection

@@ -14,6 +14,11 @@ class CandidateModel extends Model
     use HasFactory;
     protected $table = 'candidates';
 
+    public function votes()
+    {
+        return $this->hasMany(VotesModel::class, 'candidate_id');
+    }
+
     static public function getCandidates()
     {
         $return = self::select('candidates.*')
@@ -33,16 +38,17 @@ class CandidateModel extends Model
         return $return;
     }
 
+
+
     static public function getCandidatesWithVoteCounts($electionId)
-    {
-        return self::select('candidates.*', DB::raw('COUNT(votes.id) as vote_count'))
-            ->leftJoin('votes', 'candidates.id', '=', 'votes.candidate_id')
-            ->where('candidates.election', '=', $electionId)
-            ->where('candidates.is_delete', '=', 0)
-            ->groupBy('candidates.id')
-            ->orderBy('vote_count', 'desc')
-            ->get();
-    }
+{
+    return self::withCount('votes')
+        ->where('election', $electionId)
+        ->where('is_delete', 0)
+        ->orderBy('votes_count', 'desc')
+        ->paginate(5);
+}
+
 
     static public function getUnvotedCandidates()
     {

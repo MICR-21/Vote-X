@@ -12,9 +12,8 @@
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                    <img class="img-xs rounded-circle"
-     src="{{ Auth::user()->profile_pic ? asset(Auth::user()->profile_pic) : asset('images/happy.png') }}"
-     alt="">
+                    <img class="img-xs rounded-circle"src="{{ Auth::user()->profile_pic ?
+                    asset(Auth::user()->profile_pic) : asset('public/assets/images/Login_bg2.jpg') }}" alt="">
 
                         <span class="count bg-success"></span>
                     </div>

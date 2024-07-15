@@ -11,6 +11,10 @@ class VotesModel extends Model
     protected $table = 'votes';
 
 
+    public function candidate()
+    {
+        return $this->belongsTo(CandidateModel::class, 'candidate_id');
+    }
     static public function getMyVotes($id){
         $return = self::select('votes.*')
         ->where('candidate_id', '=', $id);
