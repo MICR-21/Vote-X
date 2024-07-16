@@ -1,112 +1,162 @@
 # Vote-X: An E-voting Web Application Based on Blockchain Technology
 
-Vote-x is a web-based e-voting system that uses blockchain technology, which offers a decentralized and immutable ledger, to the electronic voting system to securely store, display election results that are tamper proof.
+Vote-X was a web-based e-voting system that used blockchain technology to offer a decentralized and immutable ledger for securely storing and displaying election results that were tamper-proof.
 
 ## Features
 
-- User Authentication: Secure user authentication to ensure that only authorized voters can vote.
-
-- Email Verification: Email verification is implemented to prevent fraudulent registrations.
-
-- Candidate Registration: Candidates were added and displayed for voters to see.
-
-- Adding Election Module: Election was created with a timed duration and expires after a certain time.
-
-- Voter Registration and Authentication: Voters are registered using MetaMask to ensure they do not vote multiple times.
-
-- Voting Module: Voters can vote for their respective candidates securely.
+- **User Authentication:** Secure user authentication to ensure that only authorized voters could vote.
+- **MetaMask Verification:** MetaMask verification was implemented to prevent fraudulent registrations.
+- **Candidate Registration:** Candidates were added and displayed for voters to see.
+- **Adding Election Module:** Elections were created with a timed duration and expired after a certain time.
+- **Voter Registration and Authentication:** Voters were registered using MetaMask to ensure they did not vote multiple times.
+- **Voting Module:** Voters could vote for their respective candidates securely.
 
 ## Technologies Incorporated
 
-- Laravel: Backend framework for building the application.
-- Node.js: Used for handling real-time features.
-- Composer: Dependency manager for PHP.
-- NPM: Package manager for Node.js.
-- MetaMask: used to register voters and ensure that they do not vote multiple times.
-- Ganache: provided a development enviroment for testing and deploying the smart contract.
+- [Laravel](https://laravel.com/): Backend framework for building the application.
+- [Node.js](https://nodejs.org/): Used for handling real-time features.
+- [Composer](https://getcomposer.org/): Dependency manager for PHP.
+- [NPM](https://www.npmjs.com/): Package manager for Node.js.
+- [MetaMask](https://metamask.io/): Used to register voters and ensure that they did not vote multiple times.
+- [Ganache](https://trufflesuite.com/ganache/): Provided a development environment for testing and deploying the smart contract.
+- [Truffle](https://trufflesuite.com/truffle/): Development framework for Ethereum.
 
 ## Installation
 
 ### Prerequisites
 
-- PHP >= 10.48.10
-- Composer
-- Node.js
-- MySQL Workbench
-- Git
-- Metamask
-- Ganache
+- [PHP >= 8.0](https://www.php.net/downloads)
+- [Composer](https://getcomposer.org/download/)
+- [Node.js](https://nodejs.org/en/download/)
+- [MySQL Workbench](https://www.mysql.com/products/workbench/)
+- [Git](https://git-scm.com/downloads)
+- [MetaMask](https://metamask.io/download.html)
+- [Ganache](https://trufflesuite.com/ganache/)
+- [Truffle](https://trufflesuite.com/truffle/)
 
-### STEPS
+### Steps
 
 #### 1. Clone the Repository
 
-Run the command: git clone <https://github.com/MICR-21/Vote-X.git>
+Run the command: 
+```bash
+git clone https://github.com/MICR-21/Vote-X.git
+```
 
-#### 2. Install PHP Dependancies
+#### 2. Install PHP Dependencies
   
-Run command: composer update
+Run command: 
+```bash
+composer update
+```
 
-#### 3. Copy environment file
+#### 3. Copy Environment File
 
-run the code: cp .env.example .env
+Run the code: 
+```bash
+cp .env.example .env
+```
 
-#### 4. Generate application key
+#### 4. Generate Application Key
 
-Use code: php artisan key:generate
+Use code: 
+```bash
+php artisan key:generate
+```
 
-#### 5. Install Node.js dependencies
+#### 5. Install Node.js Dependencies
 
-Use code: npm install
+Use code: 
+```bash
+npm install
+```
 
-#### 6. Set up database
+#### 6. Set Up Database
 
-Create a database and update the .env file with your database credentials.
-Run migrations to set up the database tables.
+Create a database and update the `.env` file with your database credentials. Run migrations to set up the database tables.
 
-Run migration code: php artisan migrate
+Run migration code: 
+```bash
+php artisan migrate
+```
 
 #### 7. Installing MetaMask
 
-To install MetaMask on google Chrome, go to the chrome webstore and Click 'Add to Chrome' and follow the instructions to install the extension.
-
-To install on Brave, you only got to settings to enable it since it is already built into the Brave browser.
-
-To install it on Firefox, go to the firefox Add-ons Store and click ' Add to Firefox' and follow the instructions to install the extension.
+- **Chrome:** Go to the [Chrome Web Store](https://chrome.google.com/webstore) and click 'Add to Chrome' and follow the instructions to install the extension.
+- **Brave:** Go to settings to enable MetaMask since it was already built into the Brave browser.
+- **Firefox:** Go to the [Firefox Add-ons Store](https://addons.mozilla.org/en-US/firefox/) and click 'Add to Firefox' and follow the instructions to install the extension.
 
 ##### 7.1 Set Up MetaMask
 
-- Open the Meta Mask extension in your browser.
+- Open the MetaMask extension in your browser.
 - Click get started.
-- If you have an existing wallet, you can import it using your seed phrase. Otherwise, Create a new wallet by following the on-screen instructions.
-- Securely store your seed phrase as it is crucial for wallet recovery.
+- If you had an existing wallet, you could import it using your seed phrase. Otherwise, create a new wallet by following the on-screen instructions.
+- Securely store your seed phrase as it was crucial for wallet recovery.
 
+#### 8. Installing and Running Ganache
 
-#### 8. Intalling and Running Ganache
+To install Ganache, you could download it from the [Ganache website](https://trufflesuite.com/ganache/).
 
-To  install ganache you can download  the [Ganache website](https://archive.trufflesuite.com/ganache/): or
+Or run the following command to install it:
+```bash
+npm install -g ganache-cli
+```
 
-run the following command to install it : npm install -g ganache-cli
+To run Ganache, run the command:
+```bash
+ganache-cli
+```
+or if you were using the application, open the GUI application.
 
-To run the ganache, run the command: ganache-cli
-or if your using the application open the GUI application.
+#### 9. Compile and Deploy Smart Contracts with Truffle
 
-#### 8. Run the application
+1. Install Truffle globally:
+    ```bash
+    npm install -g truffle
+    ```
+2. Compile the smart contracts:
+    ```bash
+    truffle compile
+    ```
+3. Deploy the smart contracts to the development network:
+    ```bash
+    truffle migrate
+    ```
+4. Run Truffle tests:
+    ```bash
+    truffle test
+    ```
 
-Use code: php artisan serve
+#### 10. Run the Application
 
-#### 10. Run Node.js server
+Use code: 
+```bash
+php artisan serve
+```
 
-use code: node server.js
+#### 11. Run Node.js Server
+
+Use code: 
+```bash
+node server.js
+```
+
+#### 12. Build Frontend Assets
+
+Use code:
+```bash
+npm run dev
+```
 
 ### How to Access the Application
 
-- Register an account: Visit the registration page and create an account.
+- **Register an account:** Visit the registration page and create an account.
+- **Email Verification:** Verify your email by clicking on the link sent to your email address.
+- **Login:** Log in to the application using your credentials.
 
-- Email Verification: Verify your email by clicking on the link sent to your email address.
-- Login: Log in to the application using your credentials.
-- Contributions:
-To contribute, follow these steps below:
+## Contributions
+
+To contribute, follow these steps:
 
 1. Fork the repository.
 2. Create a new branch.
